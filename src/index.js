@@ -1,14 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Main from './containers/Main'
 
-class Test extends React.PureComponent {
-  render () {
-    return (
-      <div>JABLKO</div>
-    )
-  }
-}
-ReactDOM.render(<Test />, document.querySelector('#app'))
+ReactDOM.render(<Main />, document.querySelector('#app'))
 
 if (module.hot) {
   module.hot.accept()
