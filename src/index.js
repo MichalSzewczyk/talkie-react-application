@@ -1,15 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 class Test extends React.PureComponent {
-    render(){
-        return(
-            <div>JABLKO</div>
-        );
-    }
+  render () {
+    return (
+      <div>JABLKO</div>
+    )
+  }
 }
-ReactDOM.render(<Test/>,document.querySelector("#app"));
+ReactDOM.render(<Test />, document.querySelector('#app'))
 
 if (module.hot) {
-    module.hot.accept();
+  module.hot.accept()
 }
