@@ -1,9 +1,9 @@
-import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {createStore, applyMiddleware, combineReducers} from 'redux'
 import {composeWithDevTools} from 'remote-redux-devtools'
 import thunk from 'redux-thunk'
 
 const rootReducer = combineReducers({})
-const initialState = {};
+const initialState = {}
 
 const store = createStore(
     rootReducer,
@@ -11,4 +11,4 @@ const store = createStore(
     composeWithDevTools({realtime: true})(applyMiddleware(thunk))
 )
 
-export default  store;
+export default store

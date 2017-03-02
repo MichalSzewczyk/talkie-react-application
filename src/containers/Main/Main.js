@@ -2,7 +2,6 @@ import React from 'react'
 import bemClassName from 'bem-classname'
 
 class Main extends React.PureComponent {
-
   constructor () {
     super()
     this.classname = bemClassName.bind(null, 'Main')
