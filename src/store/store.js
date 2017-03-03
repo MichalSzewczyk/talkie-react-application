@@ -1,10 +1,10 @@
-import {createStore, applyMiddleware, compose} from 'redux'
-
+import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
+import AccountReducer from './../ducks/account'
 import thunk from 'redux-thunk'
 
-const reducer = () => {
-  return {}
-}
+const combinedReducers = combineReducers({
+  account: AccountReducer
+})
 
 const composeEnhancers =
     typeof window === 'object' &&
@@ -14,6 +14,6 @@ const composeEnhancers =
 const enhancer = composeEnhancers(
     applyMiddleware(thunk),
 )
-const store = createStore(reducer, enhancer)
+const store = createStore(combinedReducers, enhancer)
 
 export default store
