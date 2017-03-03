@@ -3,22 +3,30 @@ import bemClassName from 'bem-classname'
 import {Link} from 'react-router'
 
 class Login extends React.PureComponent {
-  constructor () {
-    super()
-    this.classname = bemClassName.bind(null, 'Login')
-  }
+    constructor() {
+        super()
+        this.classname = bemClassName.bind(null, 'Login')
+    }
 
-  render () {
-    return (
-      <div className={this.classname()}>
-        <input type='email' />
-        <input type='password' />
-        <button>Login</button>
-        <Link to='/register'>
-          <button>Register</button>
-        </Link>
-      </div>
-    )
-  }
+    onLogin() {
+        const {login} = this.props
+        const loginValue = this.refs.login.value;
+        const passwordValue = this.refs.password.value;
+        login(loginValue, passwordValue)
+    }
+
+    render() {
+
+        return (
+            <div className={this.classname()}>
+                <input ref="login" type='email'/>
+                <input ref="password" type='password'/>
+                <button onClick={::this.onLogin}>Login</button>
+                <Link to='/register'>
+                    <button>Register</button>
+                </Link>
+            </div>
+        )
+    }
 }
 export default Login

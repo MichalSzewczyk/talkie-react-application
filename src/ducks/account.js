@@ -10,7 +10,7 @@ const reducer = handleActions({
   [LOGIN().type]: (state, action) => {
     console.log('LOGIN', state, action)
     const newState = Object.assign({}, state, {
-      logged: !state.account.logged
+      logged: !state.logged
     })
     return newState
   }

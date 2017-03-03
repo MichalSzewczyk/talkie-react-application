@@ -1,7 +1,9 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
 import Login from './../../components/Login'
+import {LOGIN} from './../../ducks/account'
 
+import {connect} from 'react-redux'
 class LoginWrapper extends React.PureComponent {
   constructor () {
     super()
@@ -9,9 +11,24 @@ class LoginWrapper extends React.PureComponent {
   }
 
   render () {
+    const {login} = this.props
     return (
-      <Login />
+      <Login login={login} />
     )
   }
 }
-export default LoginWrapper
+function mapStateToProps () {
+  return {}
+}
+function mapDispatchToProps (dispatch) {
+  return {
+    login: (login, password) => {
+      dispatch(LOGIN({
+        login,
+        password
+      }))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginWrapper)
