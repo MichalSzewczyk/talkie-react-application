@@ -17,4 +17,3 @@ const reducer = handleActions({
 }, defaultState)
 
 export default reducer
-
