@@ -3,4 +3,37 @@
   height: 100%;
   background-image: url("/login_background.jpg");
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__loginBox {
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    height: 380px;
+    margin-left: 276px;
+    border-radius: 21px;
+    background-color: rgba(185, 183, 187, 0.52);
+  }
+  &__inputBundle {
+    width: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    input {
+      width: 100%;
+      border: 0;
+      height: 30px;
+    }
+  }
+  &__loginButton {
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    border-radius: 20px;
+    color: #386de4;
+    margin: 5px 0px;
+    font-size: 15px;
+    font-weight: bold;
+  }
 }

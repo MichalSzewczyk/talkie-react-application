@@ -19,12 +19,28 @@ class Login extends React.PureComponent {
 
         return (
             <div className={this.classname()}>
-                <input ref="login" type='email'/>
-                <input ref="password" type='password'/>
-                <button onClick={::this.onLogin}>Login</button>
-                <Link to='/register'>
-                    <button>Register</button>
-                </Link>
+                <div className={this.classname("loginBox")}>
+                    <div className={this.classname("inputBundle")}>
+                        <input
+                            className={this.classname("email")}
+                            placeholder="Login"
+                            ref="login"
+                            type='email'/>
+                        <input
+                            className={this.classname("password")}
+                            placeholder="Password"
+                            ref="password"
+                            type='password'/>
+                    </div>
+                    <button
+                        className={this.classname("loginButton")}
+                        onClick={::this.onLogin}>
+                        Login
+                    </button>
+                    <Link to='/register'>
+                        <button>Register</button>
+                    </Link>
+                </div>
             </div>
         )
     }
