@@ -1,7 +1,8 @@
 import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
 import AccountReducer from './../ducks/account'
 import thunk from 'redux-thunk'
-import {routerReducer} from 'react-router-redux'
+import {browserHistory} from 'react-router'
+import {routerReducer, routerMiddleware} from 'react-router-redux'
 
 const combinedReducers = combineReducers({
     account: AccountReducer,
@@ -15,6 +16,7 @@ const composeEnhancers =
 
 const enhancer = composeEnhancers(
     applyMiddleware(thunk),
+    applyMiddleware(routerMiddleware(browserHistory))
 )
 const store = createStore(combinedReducers, enhancer)
 

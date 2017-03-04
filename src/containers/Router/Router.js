@@ -14,6 +14,9 @@ class RouterWrapper extends React.PureComponent {
                     <IndexRoute component={LoginWrapper} />
                     <Route path='/register' component={RegisterWrapper}/>
                 </Route>
+                <Route path="/dashboard" component={InitialPage}>
+
+                </Route>
             </Router>
         )
     }
