@@ -9,7 +9,7 @@ export default (query) => {
                 // Request finished. Do processing here.
                 resolve(xhr)
             } else {
-                reject(xhr)
+                reject(new Error('Could not connect to server'))
             }
         }
 

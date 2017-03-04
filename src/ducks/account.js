@@ -7,8 +7,19 @@ const defaultState = {
 }
 
 const reducer = handleActions({
-    [LOGIN().type]: (state) => {
-        return state
+    [LOGIN().type]: (state, action) => {
+        console.log('ACTION', action)
+        let newState;
+        if (action.error) {
+            newState = Object.assign({}, state, {
+                error: true,
+                message: action.payload.message
+            })
+        } else {
+            newState = Object.assign({}, state, action.payload)
+        }
+
+        return newState
     }
 }, defaultState)
 
