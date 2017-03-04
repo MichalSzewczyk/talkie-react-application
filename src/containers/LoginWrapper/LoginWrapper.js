@@ -2,8 +2,7 @@ import React from 'react'
 import bemClassName from 'bem-classname'
 import Login from './../../components/Login'
 import {connect} from 'react-redux'
-import {LOGIN} from './../../ducks/account'
-
+import LoginAction from './../../actions/login'
 class LoginWrapper extends React.PureComponent {
 
     constructor() {
@@ -25,10 +24,7 @@ function mapStateToProps() {
 function mapDispatchToProps(dispatch) {
     return {
         loginAction: (login, password) => {
-            dispatch(LOGIN({
-                login,
-                password
-            }))
+            dispatch(LoginAction(login, password))
         }
     }
 }
