@@ -6,34 +6,73 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  * {
+    outline: none !important;
+  }
+  input, span{
+    font-family: raleway !important;
+  }
+  &__registerText{
+    color:#dad9d9;
+    font-size: 11px;
+  }
 
   &__loginBox {
     display: flex;
     flex-direction: column;
     width: 340px;
     height: 380px;
-    margin-left: 276px;
-    border-radius: 21px;
-    background-color: rgba(185, 183, 187, 0.52);
+  }
+  &__email {
+
   }
   &__inputBundle {
     width: 200px;
-    border-radius: 10px;
     overflow: hidden;
     input {
       width: 100%;
       border: 0;
-      height: 30px;
+      height: 40px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 16px;
+      margin-bottom: 10px;
+      padding: 0 18px;
+      box-sizing: border-box;
+      background-color: rgba(142, 142, 142, 0.39);
+      color: white;
+      ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: pink;
+      }
+      ::-moz-placeholder { /* Firefox 19+ */
+        color: pink;
+      }
+      :-ms-input-placeholder { /* IE 10+ */
+        color: pink;
+      }
+      :-moz-placeholder { /* Firefox 18- */
+        color: pink;
+      }
     }
   }
   &__loginButton {
     width: 200px;
-    height: 50px;
-    background-color: white;
+    height: 35px;
+    border: none;
+    background-color: rgba(107, 107, 107, 0.79);
     border-radius: 20px;
-    color: #386de4;
-    margin: 5px 0px;
-    font-size: 15px;
+    color: #e4e4e4;
+    margin: 0px;
+    font-size: 13px;
     font-weight: bold;
+    cursor: pointer;
+    transition: all .2s linear;
+    &:hover{
+      transform: scale(1.02);
+    }
+    &:active {
+      transform: scale(.95);
+    }
+
   }
 }

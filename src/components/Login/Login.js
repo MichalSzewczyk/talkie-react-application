@@ -35,10 +35,11 @@ class Login extends React.PureComponent {
                     <button
                         className={this.classname("loginButton")}
                         onClick={::this.onLogin}>
-                        Login
+                        <span>Log In</span>
                     </button>
                     <Link to='/register'>
-                        <button>Register</button>
+                        <span className={this.classname("registerText")}
+                        >Don't have account? Register one now!</span>
                     </Link>
                 </div>
             </div>
