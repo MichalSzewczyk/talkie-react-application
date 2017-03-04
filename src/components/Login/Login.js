@@ -24,21 +24,25 @@ class Login extends React.PureComponent {
                         <input
                             className={this.classname("email")}
                             placeholder="Login"
+                            tabIndex="1"
                             ref="login"
                             type='email'/>
                         <input
                             className={this.classname("password")}
+                            tabIndex="2"
                             placeholder="Password"
                             ref="password"
                             type='password'/>
                     </div>
                     <button
                         className={this.classname("loginButton")}
+                        tabIndex="3"
                         onClick={::this.onLogin}>
+
                         <span>Log In</span>
                     </button>
                     <Link to='/register'>
-                        <span className={this.classname("registerText")}
+                        <span tabIndex="4" className={this.classname("registerText")}
                         >Don't have account? Register one now!</span>
                     </Link>
                 </div>

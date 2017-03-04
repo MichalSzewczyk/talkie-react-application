@@ -3,17 +3,13 @@ import {createAction, handleActions} from 'redux-actions'
 export const LOGIN = createAction('LOGIN')
 
 const defaultState = {
-  logged: false
+    logged: false
 }
 
 const reducer = handleActions({
-  [LOGIN().type]: (state, action) => {
-    console.log('LOGIN', state, action)
-    const newState = Object.assign({}, state, {
-      logged: !state.logged
-    })
-    return newState
-  }
+    [LOGIN().type]: (state) => {
+        return state
+    }
 }, defaultState)
 
 export default reducer
