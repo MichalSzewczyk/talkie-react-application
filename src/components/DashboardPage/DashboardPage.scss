@@ -1,0 +1,10 @@
+.DashboardPage {
+  height: 100%;
+  background: rgba(67,185,217,1);
+  background: -moz-linear-gradient(top, rgba(67,185,217,1) 0%, rgba(41,113,132,1) 30%, rgba(0,0,0,0.81) 77%, rgba(0,0,0,0.78) 84%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(67,185,217,1)), color-stop(30%, rgba(41,113,132,1)), color-stop(77%, rgba(0,0,0,0.81)), color-stop(84%, rgba(0,0,0,0.78)));
+  background: -webkit-linear-gradient(top, rgba(67,185,217,1) 0%, rgba(41,113,132,1) 30%, rgba(0,0,0,0.81) 77%, rgba(0,0,0,0.78) 84%);
+  background: -o-linear-gradient(top, rgba(67,185,217,1) 0%, rgba(41,113,132,1) 30%, rgba(0,0,0,0.81) 77%, rgba(0,0,0,0.78) 84%);
+  background: -ms-linear-gradient(top, rgba(67,185,217,1) 0%, rgba(41,113,132,1) 30%, rgba(0,0,0,0.81) 77%, rgba(0,0,0,0.78) 84%);
+  background: linear-gradient(to bottom, rgba(67,185,217,1) 0%, rgba(41,113,132,1) 30%, rgba(0,0,0,0.81) 77%, rgba(0,0,0,0.78) 84%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#43b9d9', endColorstr='#000000', GradientType=0 );}
