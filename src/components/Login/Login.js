@@ -2,6 +2,7 @@ import React from 'react'
 import bemClassName from 'bem-classname'
 import {Link} from 'react-router'
 
+
 class Login extends React.PureComponent {
     constructor() {
         super()

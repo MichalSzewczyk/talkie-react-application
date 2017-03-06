@@ -1,7 +1,7 @@
 .InitialPage {
   width: 100%;
   height: 100%;
-  background-image: url("/login_background.jpg");
+  background-image: url("/login_background_edited.jpg");
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -15,6 +15,7 @@
   }
 
   &__childrenWrapper {
+    z-index: 1;
     margin-top: 150px;
   }
 }

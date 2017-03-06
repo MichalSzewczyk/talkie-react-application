@@ -32,6 +32,10 @@ const config = {
             {
                 from:'./resources/image/login_background.jpg',
                 to:'./login_background.jpg'
+            },
+            {
+                from:'./resources/image/login_background_edited.jpg',
+                to:'./login_background_edited.jpg'
             }
         ])
     ]
