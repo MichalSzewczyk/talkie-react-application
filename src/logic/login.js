@@ -4,8 +4,9 @@ export function requestLogin(login, password) {
     return new Promise((resolve, reject) => {
         let query = `
             query{
-              login(login:${login}, password:${password}){
-                name
+              login(login:"${login}", password:"${password}"){
+                login
+                password
               }
             }
         `;
