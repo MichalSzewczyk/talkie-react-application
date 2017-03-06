@@ -5,11 +5,14 @@ export default (query) => {
         xhr.open('POST', 'http://localhost:8080', true);
 
         xhr.onreadystatechange = function () {//Call a function when the state changes.
-            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-                // Request finished. Do processing here.
-                resolve(xhr)
-            } else {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Request finished. Do processing here.
+                    resolve(xhr)
+                    return;
+                }
                 reject(new Error('Could not connect to server'))
+
             }
         }
 
