@@ -14,8 +14,10 @@ class DashboardPage extends React.PureComponent {
 
         return (
             <div className={this.classname()}>
-                <ContactList/>
-                <Chat/>
+                <div className={this.classname('box')}>
+                    <ContactList/>
+                    <Chat/>
+                </div>
             </div>
         )
     }

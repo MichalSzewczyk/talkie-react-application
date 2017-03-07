@@ -1,4 +1,21 @@
 .DashboardPage {
   height: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(134, 96, 247, 1);
+  background: -moz-linear-gradient(-45deg, rgba(134, 96, 247, 1) 0%, rgba(41, 105, 207, 1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(134, 96, 247, 1)), color-stop(100%, rgba(41, 105, 207, 1)));
+  background: -webkit-linear-gradient(-45deg, rgba(134, 96, 247, 1) 0%, rgba(41, 105, 207, 1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(134, 96, 247, 1) 0%, rgba(41, 105, 207, 1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(134, 96, 247, 1) 0%, rgba(41, 105, 207, 1) 100%);
+  background: linear-gradient(135deg, rgba(134, 96, 247, 1) 0%, rgba(41, 105, 207, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8660f7', endColorstr='#2969cf', GradientType=1);
+  &__box {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    overflow: hidden;
+    border-radius: 20px;
+  }
 }

@@ -1,5 +1,40 @@
 .ContactList {
   height: 100%;
-  background-color: #232a32;
-  flex-basis: 15%;
+  overflow: auto;
+  flex-basis: 20%;
+  background-color: #42494f;
+  &__item {
+    overflow: hidden;
+    background-color: #232a32;
+    height: 80px;
+    color: white;
+    display: flex;
+    align-items: center;
+    &__textBox {
+      display: flex;
+      flex-direction: column;
+    }
+    &__identification {
+      font-size: 14px;
+    }
+    &__description {
+      color: #bbbbbb;
+      padding-top: 3px;
+      font-size: 12px;
+      width: 140px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &__avatar {
+      $size: 60px;
+      padding: 0 10px;
+      border-radius: 50%;
+      width: $size;
+      height: $size;
+    }
+    &:not(:first-of-type) {
+      margin-top: 2px;
+    }
+  }
 }
