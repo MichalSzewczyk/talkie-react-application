@@ -1,5 +1,7 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
+import ContactList from './../../containers/ContactListWrapper'
+import Chat from './../../components/Chat'
 
 class DashboardPage extends React.PureComponent {
 
@@ -12,8 +14,8 @@ class DashboardPage extends React.PureComponent {
 
         return (
             <div className={this.classname()}>
-                Dashboard
-                {this.props.children}
+                <ContactList/>
+                <Chat/>
             </div>
         )
     }
