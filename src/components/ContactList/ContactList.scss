@@ -4,6 +4,8 @@
   flex-basis: 20%;
   background-color: #42494f;
   &__item {
+    cursor: pointer;
+    user-select: none;
     overflow: hidden;
     background-color: #232a32;
     height: 80px;
@@ -16,6 +18,7 @@
     }
     &__identification {
       font-size: 14px;
+      margin-right: 10px;
     }
     &__description {
       color: #bbbbbb;
@@ -26,8 +29,12 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    &__mainText {
+      display: flex;
+      align-items: center;
+    }
     &__avatar {
-      $size: 60px;
+      $size: 50px;
       padding: 0 10px;
       border-radius: 50%;
       width: $size;
@@ -35,6 +42,9 @@
     }
     &:not(:first-of-type) {
       margin-top: 2px;
+    }
+    &:hover {
+      transition: all .2s linear;
     }
   }
 }

@@ -10,7 +10,7 @@ class ContactList extends React.PureComponent {
     }
 
     createContactItem(contact) {
-        const {id, name, lastName, email, avatar, description} = contact
+        const {id, name, lastName, email, avatar, description, status} = contact
         return (
             <ContactListItem
                 id={id}
@@ -20,12 +20,14 @@ class ContactList extends React.PureComponent {
                 avatar={avatar}
                 key={id}
                 description={description}
+                status={status}
             />
         );
     }
 
     createContactList(list) {
-        const result = list.map(this.createContactItem);
+        const result = list
+            .map(this.createContactItem)
         return result;
     }
 

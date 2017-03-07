@@ -1,0 +1,12 @@
+.Status {
+  $size: 5px;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  &--online{
+    background-color: #4cb629;
+  }
+  &--offline{
+    background-color: red;
+  }
+}
