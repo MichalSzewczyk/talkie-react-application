@@ -11,7 +11,7 @@ export default (query) => {
                     resolve(xhr)
                     return;
                 }
-                reject(new Error('Could not connect to server'))
+                reject(new Error(' (╯°□°）╯︵ ┻━┻: Could not connect to server'))
             }
         }
 

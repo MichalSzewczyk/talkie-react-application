@@ -1,5 +1,7 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
+import Icon from './../Icon'
+import sendIcon from './../../resources/icons/send.svg'
 
 class Sender extends React.PureComponent {
 
@@ -12,8 +14,8 @@ class Sender extends React.PureComponent {
 
         return (
             <div className={this.classname()}>
-                <input type="text"/>
-                <button>Nakurwiaj</button>
+                <textarea placeholder="Enter message" className={this.classname('input')} type="text"/>
+                <button><Icon className={this.classname('icon')} icon={sendIcon}/></button>
             </div>
         )
     }

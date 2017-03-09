@@ -9,7 +9,6 @@ class MessageBoard extends React.PureComponent {
     }
 
     render() {
-
         return (
             <div className={this.classname()}>
 

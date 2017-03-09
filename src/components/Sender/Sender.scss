@@ -1,13 +1,46 @@
 .Sender {
+  $border-color: #b3b1b1;
   height: 80px;
   display: flex;
-  input {
+  border-top: 1px $border-color solid;
+  * {
+    outline: none;
+  }
+  &__input {
     border: none;
     height: 100%;
     flex-grow: 1;
-    background-color: red;
+    background-color: white;
+    box-sizing: border-box;
+    resize: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
   }
   button {
-    width: 50px;
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-left: 1px solid $border-color;
+    background-color: white;
+    &:active {
+      .Sender__icon {
+        animation: animate_send_message .5s 1;
+
+      }
+    }
+    @keyframes animate_send_message {
+      to {
+        transform: scale(1.1);
+      }
+    }
+  }
+  &__icon {
+    $size: 40px;
+    width: $size;
+    height: $size;
+    animation-fill-mode: forwards;
+
   }
 }
