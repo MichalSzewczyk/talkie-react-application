@@ -2,8 +2,7 @@ import React from 'react'
 import bemClassName from 'bem-classname'
 import Sender from './../Sender'
 import MessageBoard from './../MessageBoard'
-import Icon from './../Icon'
-import closeIcon from './../../resources/icons/close.svg'
+import ChatBar from './../../components/ChatBar'
 
 class Chat extends React.PureComponent {
 
@@ -13,15 +12,14 @@ class Chat extends React.PureComponent {
     }
 
     render() {
-        const {onChatExit} = this.props;
+        const {onChatExit, contactInfo} = this.props;
 
         return (
             <div className={this.classname()}>
-                <div
-                    className={this.classname('closeIcon')}
-                    onClick={onChatExit}>
-                    <Icon icon={closeIcon}/>
-                </div>
+                <ChatBar
+                    onChatExit={onChatExit}
+                    contactInfo={contactInfo}
+                />
                 <MessageBoard/>
                 <Sender/>
             </div>

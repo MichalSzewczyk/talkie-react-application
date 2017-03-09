@@ -6,15 +6,22 @@ import {push} from 'react-router-redux'
 class ChatWrapper extends React.PureComponent {
 
     render() {
-        const {onChatExit} = this.props
+        const {onChatExit, contactInfo} = this.props
 
         return (
-            <Chat onChatExit={onChatExit}/>
+            <Chat
+                onChatExit={onChatExit}
+                contactInfo={contactInfo}
+            />
         )
     }
 }
-function mapStateToProps() {
-    return {}
+function mapStateToProps(state, props) {
+    const {userId} = props.params
+
+    return {
+        contactInfo: state.contacts.list.find(item => item.id == userId)
+    }
 }
 function mapDistpachToProps(dispatch) {
     return {

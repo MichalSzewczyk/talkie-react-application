@@ -1,0 +1,1 @@
+export default 'https://image.flaticon.com/icons/png/512/149/149072.png'
