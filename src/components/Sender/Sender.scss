@@ -1,0 +1,13 @@
+.Sender {
+  height: 80px;
+  display: flex;
+  input {
+    border: none;
+    height: 100%;
+    flex-grow: 1;
+    background-color: red;
+  }
+  button {
+    width: 50px;
+  }
+}

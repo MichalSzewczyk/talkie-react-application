@@ -10,6 +10,7 @@ const reducer = handleActions({
     [LOGIN().type]: (state, action) => {
         console.log('ACTION', action)
         let newState;
+
         if (action.error) {
             newState = Object.assign({}, state, {
                 error: true,

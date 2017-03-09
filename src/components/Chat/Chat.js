@@ -1,5 +1,7 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
+import Sender from './../Sender'
+import MessageBoard from './../MessageBoard'
 
 class Chat extends React.PureComponent {
 
@@ -12,7 +14,8 @@ class Chat extends React.PureComponent {
 
         return (
             <div className={this.classname()}>
-                Chat Dumb
+                <MessageBoard/>
+                <Sender/>
             </div>
         )
     }
