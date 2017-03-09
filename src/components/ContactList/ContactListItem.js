@@ -9,12 +9,17 @@ class ContactListItem extends React.PureComponent {
         this.classname = bemClassName.bind(null, 'ContactList__item')
     }
 
+    onItemClick() {
+        const {id, onUserSelect} = this.props
+        onUserSelect(id);
+    }
+
     render() {
-        const {id, name, lastName, email, avatar, description, status} = this.props
+        const {name, lastName, avatar, description, status} = this.props
         const identification = `${name} ${lastName}`
         const fallbackImage = 'https://image.flaticon.com/icons/png/512/149/149072.png'
         return (
-            <div className={this.classname()}>
+            <div onClick={::this.onItemClick} className={this.classname()}>
                 <img className={this.classname('avatar')} src={avatar || fallbackImage}/>
                 <div className={this.classname('textBox')}>
                     <div className={this.classname('mainText')}>

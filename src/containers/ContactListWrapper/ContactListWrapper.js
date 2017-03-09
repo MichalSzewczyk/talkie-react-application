@@ -1,13 +1,18 @@
 import React from 'react'
 import ContactList from './../../components/ContactList'
 import {connect} from 'react-redux'
+import {push} from 'react-router-redux'
+
 class ContactListWrapper extends React.PureComponent {
 
     render() {
-        const {contactsList} = this.props
+        const {contactsList, onUserSelect} = this.props
 
         return (
-            <ContactList contacts={contactsList} />
+            <ContactList
+                onUserSelect={onUserSelect}
+                contacts={contactsList}
+            />
         )
     }
 }
@@ -17,4 +22,11 @@ function mapStateToProps(state) {
         contactsList: state.contacts.list
     }
 }
-export default connect(mapStateToProps)(ContactListWrapper)
+function mapDispatchToProps(dispatch) {
+    return {
+        onUserSelect: (userId) => {
+            dispatch(push(`/dashboard/chat/${userId}`))
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ContactListWrapper)

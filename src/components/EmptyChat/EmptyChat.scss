@@ -1,0 +1,13 @@
+.EmptyChat {
+  background-color: white;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  &__message {
+    font-size: 40px;
+    margin-top: 15%;
+    user-select: none;
+    cursor: pointer;
+  }
+}

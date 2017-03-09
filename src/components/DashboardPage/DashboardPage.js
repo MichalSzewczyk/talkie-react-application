@@ -16,7 +16,7 @@ class DashboardPage extends React.PureComponent {
             <div className={this.classname()}>
                 <div className={this.classname('box')}>
                     <ContactList/>
-                    <Chat/>
+                    {this.props.children}
                 </div>
             </div>
         )

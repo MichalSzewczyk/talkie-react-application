@@ -9,8 +9,9 @@ class ContactList extends React.PureComponent {
         this.classname = bemClassName.bind(null, 'ContactList')
     }
 
-    createContactItem(contact) {
+    createContactItem(onUserSelect, contact) {
         const {id, name, lastName, email, avatar, description, status} = contact
+
         return (
             <ContactListItem
                 id={id}
@@ -21,19 +22,20 @@ class ContactList extends React.PureComponent {
                 key={id}
                 description={description}
                 status={status}
+                onUserSelect={onUserSelect}
             />
         );
     }
 
-    createContactList(list) {
+    createContactList(list, onUserSelect) {
         const result = list
-            .map(this.createContactItem)
+            .map(this.createContactItem.bind(null, onUserSelect))
         return result;
     }
 
     render() {
-        const {contacts} = this.props
-        const parsedContacts = this.createContactList(contacts)
+        const {contacts, onUserSelect} = this.props
+        const parsedContacts = this.createContactList(contacts, onUserSelect)
 
         return (
             <div className={this.classname()}>
