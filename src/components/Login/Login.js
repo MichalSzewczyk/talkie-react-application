@@ -5,12 +5,12 @@ import {Link} from 'react-router'
 
 class Login extends React.PureComponent {
     constructor() {
-        super()
+        super();
         this.classname = bemClassName.bind(null, 'Login')
     }
 
     onLogin() {
-        const {login} = this.props
+        const {login} = this.props;
         const loginValue = this.refs.login.value;
         const passwordValue = this.refs.password.value;
         login(loginValue, passwordValue)
