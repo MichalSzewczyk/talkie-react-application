@@ -1,0 +1,79 @@
+.Register {
+  &__loginText {
+    color: white;
+    font-size: 11px;
+  }
+
+  &__registerAccountText {
+    color: white;
+    font-size: 11px;
+  }
+
+  &__registerBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__email {
+
+  }
+  &__inputBundle {
+    width: 200px;
+    overflow: hidden;
+    input {
+      width: 100%;
+      border: 0;
+      height: 40px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 16px;
+      margin-bottom: 10px;
+      padding: 0 18px;
+      box-sizing: border-box;
+      background-color: rgba(142, 142, 142, 0.39);
+      color: white;
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: white;
+      }
+    }
+  }
+  &__registerButton {
+    width: 200px;
+    height: 35px;
+    border: none;
+    background-color: rgba(203, 239, 86, 0.52);
+    border-radius: 20px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0 0 10px;
+    cursor: pointer;
+    transition: all .2s linear;
+    &:hover {
+      transform: scale(1.02);
+    }
+    &:active {
+      transform: scale(.95);
+    }
+  }
+  &__abortButton {
+    width: 200px;
+    height: 35px;
+    border: none;
+    background-color: rgba(200, 20, 20, 0.5);
+    border-radius: 20px;
+    color: white;
+    margin: 0;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .2s linear;
+    &:hover {
+      transform: scale(1.02);
+    }
+    &:active {
+      transform: scale(.95);
+    }
+
+  }
+}
