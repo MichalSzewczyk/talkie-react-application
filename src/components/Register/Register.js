@@ -1,5 +1,6 @@
 import React from "react";
 import bemClassName from "bem-classname";
+import SweetAlert from './../Alert'
 
 class Register extends React.PureComponent {
   constructor () {
