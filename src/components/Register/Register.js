@@ -1,36 +1,30 @@
 import React from "react";
 import bemClassName from "bem-classname";
-import swal from "react-sweetalert";
 
 class Register extends React.PureComponent {
   constructor () {
 		super();
-    this.classname = bemClassName.bind(null, 'Register')
+		this.classname = bemClassName.bind(null, 'Register');
   }
 
 	onRegister() {
 		const {register} = this.props;
 		const loginValue = this.refs.login.value;
-
-		const passwordFirst = this.refs.st.value;
+		const passwordFirst = this.refs.passwordFirst.value;
 		const passwordSecond = this.refs.passwordSecond.value;
-		console.log("on register si running", passwordFirst, passwordSecond);
-		swal("Good job!", "You clicked the button!", "success");
 		if (loginValue === "" || passwordFirst === "" || passwordSecond === "") {
-			console.log("different pass");
+			let message = "Please provide required values:" + (loginValue === "" ? "\n- login" : "") + (passwordFirst === "" ? "\n- first password" : "") + (passwordSecond === "" ? "\n- second password" : "");
+			swal({title: message, type: "warning", timer: 2000});
 		}
 		else if (passwordFirst !== passwordSecond) {
-			console.log("one or more arguments not passed");
-			this.refs.login.value = "foo!";
-			//TODO: implement error message - lack of args
+			swal({title: "Passwords are different.", type: "warning", timer: 2000});
 		} else {
-			console.log("passwords are equal");
 			register(loginValue, passwordFirst);
 		}
 	}
-
   render () {
     return (
+
 			<div className={this.classname("registerBox")}>
 			<span tabIndex="4" className={this.classname("registerAccountText")}>
 				Register new account:
