@@ -1,5 +1,5 @@
 import React from 'react'
-import {Router, Route, browserHistory, IndexRoute} from 'react-router'
+import {Router, Route, hashHistory, IndexRoute} from 'react-router'
 import InitialPage from './../../components/InitialPage'
 import LoginWrapper from './../../containers/LoginWrapper'
 import RegisterWrapper from './../../containers/RegisterWrapper'
@@ -9,7 +9,7 @@ import DashboardPage from './../../components/DashboardPage'
 import EmptyChat from './../../components/EmptyChat'
 import Chat from './../../containers/ChatWrapper'
 
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(hashHistory, store);
 class RouterWrapper extends React.PureComponent {
     render() {
         return (
