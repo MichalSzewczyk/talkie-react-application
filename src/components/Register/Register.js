@@ -1,5 +1,6 @@
 import React from "react";
 import bemClassName from "bem-classname";
+
 import SweetAlert from './../Alert'
 
 class Register extends React.PureComponent {
@@ -9,13 +10,13 @@ class Register extends React.PureComponent {
     }
 
     onRegister() {
-        const {register} = this.props;
+        const {onRegisterAction} = this.props;
         const loginValue = this.refs.login.value;
         const passwordFirst = this.refs.passwordFirst.value;
         const passwordSecond = this.refs.passwordSecond.value;
 
         if (this.validatePassword(loginValue, passwordFirst, passwordSecond)) {
-            register(loginValue, passwordFirst);
+            onRegisterAction(loginValue, passwordFirst);
         }
     }
 
@@ -29,6 +30,11 @@ class Register extends React.PureComponent {
         } else {
             return true;
         }
+    }
+
+    onAbort() {
+        const {onAbortAction} = this.props
+        onAbortAction()
     }
 
     render() {
@@ -71,7 +77,7 @@ class Register extends React.PureComponent {
                 <button
                     className={this.classname("abortButton")}
                     tabIndex="3"
-                    onClick={() => location.href = "/"}>
+                    onClick={::this.onAbort}>
                     <span>Abort</span>
                 </button>
             </div>
