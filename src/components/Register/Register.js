@@ -1,7 +1,6 @@
 import React from "react";
 import bemClassName from "bem-classname";
-
-import SweetAlert from './../Alert'
+import 'sweetalert/dist/sweetalert.css';
 
 class Register extends React.PureComponent {
     constructor() {
@@ -33,7 +32,7 @@ class Register extends React.PureComponent {
     }
 
     onAbort() {
-        const {onAbortAction} = this.props
+        const {onAbortAction} = this.props;
         onAbortAction()
     }
 
