@@ -1,4 +1,21 @@
 .sweet-alert{
-  background-color: black;
-  color:white;
+  background-color: #050810;
+
+  h2 {
+    color: #dddddd;
+  }
+
+  button {
+    &.confirm {
+      background-color: #121220 !important;
+      color: #eeeeee;
+      transition: all .2s linear;
+      &:hover {
+        transform: scale(1.02);
+      }
+      &:active {
+        transform: scale(.95);
+      }
+    }
+  }
 }

@@ -22,7 +22,7 @@ class Register extends React.PureComponent {
     validatePassword(loginValue, passwordFirst, passwordSecond) {
         if (loginValue === "" || passwordFirst === "" || passwordSecond === "") {
             const message = "Please provide required values:" + (loginValue === "" ? "\n- login" : "") + (passwordFirst === "" ? "\n- first password" : "") + (passwordSecond === "" ? "\n- second password" : "");
-            swal({title: message, type: "warning", timer: 2000});
+            swal({title: message, type: "warning", timer: 3000});
         }
         else if (passwordFirst !== passwordSecond) {
             swal({title: "Passwords are different.", type: "warning", timer: 2000});
