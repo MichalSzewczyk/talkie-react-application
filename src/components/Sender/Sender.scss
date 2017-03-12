@@ -26,13 +26,8 @@
     background-color: white;
     &:active {
       .Sender__icon {
-        animation: animate_send_message .5s 1;
-
-      }
-    }
-    @keyframes animate_send_message {
-      to {
-        transform: scale(1.1);
+        transform: scale(.8);
+        transition: transform .1s linear;
       }
     }
   }

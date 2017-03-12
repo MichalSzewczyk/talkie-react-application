@@ -10,12 +10,29 @@ class Sender extends React.PureComponent {
         this.classname = bemClassName.bind(null, 'Sender')
     }
 
+    onSendMessage() {
+        const {sendMessage} = this.props
+        const inputValue = this.refs.messageInput.value
+        sendMessage(inputValue)
+        this.clearInputValue()
+    }
+
+    clearInputValue() {
+        this.refs.messageInput.value = '';
+    }
+
     render() {
 
         return (
             <div className={this.classname()}>
-                <textarea placeholder="Enter message" className={this.classname('input')} type="text"/>
-                <button><Icon className={this.classname('icon')} icon={sendIcon}/></button>
+                <textarea
+                    placeholder="Enter message"
+                    className={this.classname('input')}
+                    type="text"
+                    ref="messageInput"
+                />
+                <button onClick={::this.onSendMessage}><Icon className={this.classname('icon')} icon={sendIcon}/>
+                </button>
             </div>
         )
     }

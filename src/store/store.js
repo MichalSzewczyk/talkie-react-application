@@ -1,6 +1,7 @@
 import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
 import AccountReducer from './../ducks/account'
 import ContactsReducer from './../ducks/contacts'
+import ChatReducer from './../ducks/chat'
 import thunk from 'redux-thunk'
 import {hashHistory} from 'react-router'
 import {routerReducer, routerMiddleware} from 'react-router-redux'
@@ -8,6 +9,7 @@ import {routerReducer, routerMiddleware} from 'react-router-redux'
 const combinedReducers = combineReducers({
     account: AccountReducer,
     contacts: ContactsReducer,
+    chat: ChatReducer,
     routing: routerReducer
 })
 

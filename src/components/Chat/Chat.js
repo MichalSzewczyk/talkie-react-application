@@ -12,7 +12,7 @@ class Chat extends React.PureComponent {
     }
 
     render() {
-        const {onChatExit, contactInfo} = this.props;
+        const {onChatExit, contactInfo, sendMessage} = this.props;
 
         return (
             <div className={this.classname()}>
@@ -21,7 +21,7 @@ class Chat extends React.PureComponent {
                     contactInfo={contactInfo}
                 />
                 <MessageBoard/>
-                <Sender/>
+                <Sender sendMessage={sendMessage} />
             </div>
         )
     }

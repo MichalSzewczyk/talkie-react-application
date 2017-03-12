@@ -3,6 +3,7 @@ import bemClassName from 'bem-classname'
 import Login from './../../components/Login'
 import {connect} from 'react-redux'
 import LoginAction from './../../actions/login'
+
 class LoginWrapper extends React.PureComponent {
 
     constructor() {
