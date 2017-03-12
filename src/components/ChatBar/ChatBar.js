@@ -14,7 +14,6 @@ class ChatBar extends React.PureComponent {
     render() {
         const {onChatExit, contactInfo} = this.props
         const userName = `${contactInfo.name} ${contactInfo.lastName}`;
-        console.log('contactInfo', contactInfo)
 
         return (
             <div className={this.classname()}>

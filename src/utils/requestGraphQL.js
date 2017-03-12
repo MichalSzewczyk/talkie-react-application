@@ -8,7 +8,8 @@ export default (query) => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     // Request finished. Do processing here.
-                    resolve(xhr)
+                    const response = JSON.parse(xhr.response)
+                    resolve(response)
                     return;
                 }
                 reject(new Error(' (╯°□°）╯︵ ┻━┻: Could not connect to server'))

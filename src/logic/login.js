@@ -7,11 +7,20 @@ export function requestLogin(login, password) {
               login(login:"${login}", password:"${password}"){
                 login
                 password
+                success
               }
             }
         `;
         requestGraphQL(query)
-            .then(resolve)
+            .then((response) => {
+                const {login} = response
+                if (login.success === "true") {
+                    resolve(login)
+                    return
+                }
+                throw new Error('User is not preset in database')
+
+            })
             .catch(reject)
     })
 }

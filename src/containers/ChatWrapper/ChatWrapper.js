@@ -30,7 +30,7 @@ function mapStateToProps(state, props) {
 
     return {
         contactInfo: state.contacts.list.find(item => item.id == userId),
-        messages: _.get(state, `chat[${userId}].messages`)
+        messages: _.get(state, `chat[${userId}].messages`, [])
     }
 }
 function mapDistpachToProps(dispatch, props) {

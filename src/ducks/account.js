@@ -8,7 +8,7 @@ const defaultState = {
 
 const reducer = handleActions({
     [LOGIN().type]: (state, action) => {
-        console.log('ACTION', action)
+        console.log('LOGIN DUCK:', action)
         let newState;
 
         if (action.error) {
