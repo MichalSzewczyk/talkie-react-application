@@ -13,13 +13,14 @@ class ChatWrapper extends React.PureComponent {
     }
 
     render() {
-        const {onChatExit, contactInfo, sendMessage} = this.props
+        const {onChatExit, contactInfo, sendMessage, messages} = this.props
 
         return (
             <Chat
                 onChatExit={onChatExit}
                 contactInfo={contactInfo}
                 sendMessage={sendMessage}
+                messages={messages}
             />
         )
     }
@@ -28,7 +29,8 @@ function mapStateToProps(state, props) {
     const {userId} = props.params
 
     return {
-        contactInfo: state.contacts.list.find(item => item.id == userId)
+        contactInfo: state.contacts.list.find(item => item.id == userId),
+        messages: _.get(state, `chat[${userId}].messages`)
     }
 }
 function mapDistpachToProps(dispatch, props) {
@@ -45,10 +47,11 @@ function mapDistpachToProps(dispatch, props) {
         onChatExit: () => {
             dispatch(push(`/dashboard`))
         },
-        sendMessage: (body) => {
+        sendMessage: (body, timestamp) => {
             dispatch(ChatReducer.MESSAGE_SEND({
                 to: chatWith,
-                body
+                body,
+                timestamp
             }));
         }
     }

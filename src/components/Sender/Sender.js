@@ -2,6 +2,7 @@ import React from 'react'
 import bemClassName from 'bem-classname'
 import Icon from './../Icon'
 import sendIcon from './../../resources/icons/send.svg'
+import moment from 'moment'
 
 class Sender extends React.PureComponent {
 
@@ -13,7 +14,7 @@ class Sender extends React.PureComponent {
     onSendMessage() {
         const {sendMessage} = this.props
         const inputValue = this.refs.messageInput.value
-        sendMessage(inputValue)
+        sendMessage(inputValue, moment().format())
         this.clearInputValue()
     }
 

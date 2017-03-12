@@ -9,6 +9,8 @@ class MessageBoard extends React.PureComponent {
     }
 
     render() {
+        const {messages} = this.props
+        console.log('messages',messages)
         return (
             <div className={this.classname()}>
 

@@ -20,7 +20,7 @@ const reducer = handleActions({
         const oldMessages = state[action.payload.to].messages
         const updatedMessagesList = _.concat(oldMessages, {
             type: MESSAGE_TYPES.SENT,
-            timestamp: new Date(),
+            timestamp: action.payload.timestamp,
             body: action.payload.body
         })
 
