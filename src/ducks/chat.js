@@ -1,5 +1,6 @@
 import {createAction, handleActions} from 'redux-actions'
 import MESSAGE_TYPES from './../constants/message_types'
+import UniqueKeyGenerator from './../utils/uniqueKeyGeneartor'
 
 export const START_CHAT = createAction('CHAT/CONVERSATION/START')
 export const MESSAGE_SEND = createAction('CHAT/SEND/MESSAGE/SEND')
@@ -21,7 +22,8 @@ const reducer = handleActions({
         const updatedMessagesList = _.concat(oldMessages, {
             type: MESSAGE_TYPES.SENT,
             timestamp: action.payload.timestamp,
-            body: action.payload.body
+            body: action.payload.body,
+            uniqueID: UniqueKeyGenerator()
         })
 
         const newState = Object.assign({}, state, {

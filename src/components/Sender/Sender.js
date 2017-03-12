@@ -14,6 +14,9 @@ class Sender extends React.PureComponent {
     onSendMessage() {
         const {sendMessage} = this.props
         const inputValue = this.refs.messageInput.value
+        if (!inputValue.length > 0) {
+            return;
+        }
         sendMessage(inputValue, moment().format())
         this.clearInputValue()
     }

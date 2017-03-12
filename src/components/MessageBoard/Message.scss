@@ -1,0 +1,21 @@
+.Message {
+  display: flex;
+  padding: 10px;
+  &--SENT {
+    justify-content: flex-end;
+  }
+  &--RECEIVED {
+    justify-content: flex-start;
+  }
+  &__cloudBox {
+    $padding: 7px;
+    background-color: #0084ff;
+    border-radius: $padding $padding 0 $padding;
+    padding: 6px 12px;
+  }
+  &__value {
+    font-size: 14px;
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+}
