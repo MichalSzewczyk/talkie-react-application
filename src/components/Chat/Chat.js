@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import bemClassName from 'bem-classname'
 import Sender from './../Sender'
 import MessageBoard from './../MessageBoard'
@@ -11,8 +12,19 @@ class Chat extends React.PureComponent {
         this.classname = bemClassName.bind(null, 'Chat')
     }
 
+    onMessageSend(...args) {
+        const {sendMessage} = this.props
+        sendMessage(...args)
+        this.setFocusToInputTextArea()
+    }
+
+    setFocusToInputTextArea() {
+        const senderInputDomNode = ReactDOM.findDOMNode(this.refs.sender).querySelector('.Sender__input')
+        senderInputDomNode.focus()
+    }
+
     render() {
-        const {onChatExit, contactInfo, sendMessage, messages} = this.props;
+        const {onChatExit, contactInfo, messages} = this.props;
 
         return (
             <div className={this.classname()}>
@@ -23,7 +35,7 @@ class Chat extends React.PureComponent {
                 <MessageBoard
                     messages={messages}
                 />
-                <Sender sendMessage={sendMessage}/>
+                <Sender ref="sender" sendMessage={::this.onMessageSend}/>
             </div>
         )
     }

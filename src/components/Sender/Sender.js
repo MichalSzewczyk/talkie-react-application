@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import bemClassName from 'bem-classname'
 import Icon from './../Icon'
 import sendIcon from './../../resources/icons/send.svg'
@@ -14,15 +15,23 @@ class Sender extends React.PureComponent {
     onSendMessage() {
         const {sendMessage} = this.props
         const inputValue = this.refs.messageInput.value
-        if (!inputValue.length > 0) {
+        this.setFocusOnInput()
+        if (!inputValue.length) {
             return;
         }
         sendMessage(inputValue, moment().format())
         this.clearInputValue()
+
     }
 
     clearInputValue() {
         this.refs.messageInput.value = '';
+    }
+
+    setFocusOnInput() {
+        const inputElement = this.refs.messageInput
+        const inputDom = ReactDOM.findDOMNode(inputElement)
+        inputDom.focus()
     }
 
     render() {

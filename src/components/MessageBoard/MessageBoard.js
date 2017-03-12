@@ -21,10 +21,10 @@ class MessageBoard extends React.PureComponent {
         return result;
     }
 
-    componentWillReceiveProps(nextProps) {
-        const lastMessage = nextProps.messages[nextProps.messages.length - 1];
+    componentDidUpdate() {
+        const lastMessage = this.props.messages[this.props.messages.length - 1];
 
-        if (lastMessage.type === MESSAGE_TYPE.SENT) {
+        if (lastMessage && lastMessage.type === MESSAGE_TYPE.SENT) {
             this.scrollToBottom()
         }
     }
