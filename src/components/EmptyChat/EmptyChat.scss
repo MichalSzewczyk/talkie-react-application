@@ -2,12 +2,36 @@
   background-color: white;
   flex-grow: 1;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   &__message {
     font-size: 40px;
     margin-top: 15%;
     user-select: none;
     cursor: pointer;
+  }
+  &__or {
+    font-size: 25px;
+    margin-top: 45px;
+  }
+  &__logoutWrapper {
+
+    cursor: pointer;
+    $size: 100px;
+    margin-top: 50px;
+    border-radius: 50%;
+    background-color: rgba(187, 162, 158, 0.45);
+    height: $size;
+    width: $size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+
+  }
+  &__logout {
+    user-select: none;
   }
 }

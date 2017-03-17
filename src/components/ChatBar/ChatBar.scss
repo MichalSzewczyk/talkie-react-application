@@ -15,6 +15,10 @@
     top: 25px;
     right: 72px;
     cursor: pointer;
+    &:hover {
+      transition: transform .2s linear;
+      transform: scale(.9);
+    }
   }
 
   &__userAvatar {
