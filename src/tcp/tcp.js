@@ -8,6 +8,17 @@ class TCP {
 
     onOpen = () => {
         console.log('WEBSOCKET OPENED')
+        if (this.messagesCollection.length === 0) {
+            return
+        }
+        this.sendSavedMessages()
+    }
+
+    sendSavedMessages() {
+        this.messagesCollection.forEach(message => {
+            this.send(message)
+        })
+        this.messagesCollection = []
     }
 
     onMessage = (...args) => {
@@ -38,8 +49,8 @@ class TCP {
     }
 
     send(message) {
-        console.log('message', message)
-        if (this.websocket.status !== TCP_CONSTANTS.websocketStates.OPEN) {
+        console.log('[TCP] SEND MESSAGE: ', message, this.websocket.readyState)
+        if (this.websocket.readyState !== TCP_CONSTANTS.websocketStates.OPEN) {
             this.messagesCollection.push(message)
             //TODO: handle situtation where we trying to send message to closed socket
             return

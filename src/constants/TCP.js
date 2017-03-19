@@ -10,6 +10,7 @@ export default {
         'SEND_MESSAGE': 'SEND_MESSAGE',
         'RECEIVE_MESSAGE': 'RECEIVE_MESSAGE',
         'PING': 'PING',
-        'CLOSE_STREAM': 'CLOSE_STREAM'
+        'CLOSE_STREAM': 'CLOSE_STREAM',
+        'FETCH_USER_STATUS': 'FETCH_USER_STATUS'
     }
 }

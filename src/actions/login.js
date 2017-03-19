@@ -3,6 +3,7 @@ import {SET_CONTACTS} from './../ducks/contacts'
 import {requestLogin} from './../logic/login'
 import {push} from 'react-router-redux';
 import {saveUserCredentialsToLocalStorage} from './../logic/auth'
+import FETCH_STATUS from './TCP/fetch_status'
 
 export default function loginAction(login, password, redirectToDashboard = true) {
     return (dispatch) => {
@@ -13,6 +14,7 @@ export default function loginAction(login, password, redirectToDashboard = true)
                     const {friends} = loginObject
                     dispatch(LOGIN(loginObject))
                     dispatch(SET_CONTACTS({friends}))
+                    dispatch(FETCH_STATUS())
                     if (redirectToDashboard) {
                         dispatch(push('/dashboard'))
                     }

@@ -7,6 +7,10 @@ export default (nextState, transition, callback) => {
     const dispatch = store.dispatch
     const localStorageData = loadLoggedFromLocalStorage()
     const {account} = state
+    if (account.logged) {
+        callback()
+        return
+    }
 
     if (!account.logged && localStorageData) {
         tryToLoginWithLocalStorageData(localStorageData, dispatch)
@@ -17,11 +21,6 @@ export default (nextState, transition, callback) => {
                 transition('/');
                 callback()
             })
-        return
-    }
-
-    if (account.logged) {
-        callback()
         return
     }
 
