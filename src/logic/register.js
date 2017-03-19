@@ -5,7 +5,7 @@ export function requestRegister(login, name, lastName, password, avatar) {
 		let query = `
             query{
               register(login:"${login}", name: "${name}", lastName: "${name}", password:"${password}", avatar: "${avatar}"){
-                success
+                error
                 message
               }
             }
