@@ -1,6 +1,6 @@
 import {createAction, handleActions} from 'redux-actions'
 import USER_CONSTANTS from './../constants/user'
-// import mockedContactsList from './../mocks/contacts_list'
+
 const defaultState = {
     list: []
 }
@@ -21,10 +21,9 @@ const reducer = handleActions({
 
 function addStatusToList(list) {
     return list.map((contact) => {
-
-        return Object.assign(contact, {
-            status: USER_CONSTANTS.STATUS.UNKNOWN
-        })
+        if (!contact.status)
+            contact.status = USER_CONSTANTS.STATUS.UNKNOWN
+        return contact
     })
 }
 

@@ -1,6 +1,7 @@
 import requestGraphQL from './../utils/requestGraphQL'
 
 export function requestLogin(login, password) {
+
     return new Promise((resolve, reject) => {
         let query = `
             query{

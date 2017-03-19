@@ -8,6 +8,7 @@ import {syncHistoryWithStore} from 'react-router-redux'
 import DashboardPage from './../../components/DashboardPage'
 import EmptyChatWrapper from './../../containers/EmptyChatWrapper'
 import Chat from './../../containers/ChatWrapper'
+import requireAuth from './../../logic/auth'
 
 const history = syncHistoryWithStore(hashHistory, store);
 class RouterWrapper extends React.PureComponent {
@@ -18,7 +19,7 @@ class RouterWrapper extends React.PureComponent {
                     <IndexRoute component={LoginWrapper}/>
                     <Route path='/register' component={RegisterWrapper}/>
                 </Route>
-                <Route path="/dashboard" component={DashboardPage}>
+                <Route path="/dashboard" onEnter={requireAuth} component={DashboardPage}>
                     <IndexRoute component={EmptyChatWrapper}/>
                     <Route path="chat/:userId" components={Chat}/>
                 </Route>
