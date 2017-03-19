@@ -1,12 +1,18 @@
+@import './../../styles/variables.scss';
+
 .Status {
   $size: 5px;
   width: $size;
   height: $size;
   border-radius: 50%;
-  &--online{
-    background-color: #4cb629;
+  transition: backgrount-color .2s linear;
+  &--online {
+    background-color: $status__online;
   }
-  &--offline{
-    background-color: red;
+  &--offline {
+    background-color: $status__offline;
+  }
+  &--unknown {
+    background-color: $status__unknown;
   }
 }
