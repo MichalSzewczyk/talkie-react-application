@@ -13,15 +13,23 @@ class Register extends React.PureComponent {
         const loginValue = this.refs.login.value;
         const passwordFirst = this.refs.passwordFirst.value;
         const passwordSecond = this.refs.passwordSecond.value;
+				const nameValue = this.refs.name.value;
+				const lastNameValue = this.refs.lastName.value;
+				const avatar = this.refs.avatar.value;
 
-        if (this.validatePassword(loginValue, passwordFirst, passwordSecond)) {
-            onRegisterAction(loginValue, passwordFirst);
+        if (this.validatePassword(loginValue, nameValue, lastNameValue, passwordFirst, passwordSecond)) {
+            onRegisterAction(loginValue, nameValue, lastNameValue, passwordFirst, avatar);
         }
     }
 
-    validatePassword(loginValue, passwordFirst, passwordSecond) {
-        if (loginValue === "" || passwordFirst === "" || passwordSecond === "") {
-            const message = "Please provide required values:" + (loginValue === "" ? "\n- login" : "") + (passwordFirst === "" ? "\n- first password" : "") + (passwordSecond === "" ? "\n- second password" : "");
+    validatePassword(loginValue, nameValue, lastNameValue, passwordFirst, passwordSecond) {
+        if (loginValue === "" || nameValue === "" || lastNameValue === "" ||  passwordFirst === "" || passwordSecond === "") {
+            const message = "Please provide required values:"
+							+ (loginValue === "" ? "\n- login" : "")
+							+ (nameValue === "" ? "\n- name" : "")
+							+ (lastNameValue === "" ? "\n- last name" : "")
+							+ (passwordFirst === "" ? "\n- first password" : "")
+							+ (passwordSecond === "" ? "\n- second password" : "");
             swal({title: message, type: "warning", timer: 3000});
         }
         else if (passwordFirst !== passwordSecond) {
@@ -38,33 +46,53 @@ class Register extends React.PureComponent {
 
     render() {
         return (
-
             <div className={this.classname("registerBox")}>
-			<span tabIndex="4" className={this.classname("registerAccountText")}>
-				Register new account:
-			</span>
-                <div className={this.classname("inputBundle")}>
-                    <input
-                        className={this.classname("email")}
-                        placeholder="Login"
-                        tabIndex="1"
-                        required="required"
-                        ref="login"
-                        type='email'/>
-                    <input
-                        className={this.classname("password")}
-                        tabIndex="2"
-                        placeholder="Password"
-                        required="required"
-                        ref="passwordFirst"
-                        type='password'/>
-                    <input
-                        className={this.classname("repeatPassword")}
-                        tabIndex="2"
-                        placeholder="Repeat password"
-                        required="required"
-                        ref="passwordSecond"
-                        type='password'/>
+						<span tabIndex="4" className={this.classname("registerAccountText")}>
+								Register new account:
+						</span>
+								<div className={this.classname("inputBundle")}>
+										<input
+												className={this.classname("login")}
+												placeholder="Login"
+												tabIndex="1"
+												required="required"
+												ref="login"
+												type='text'/>
+										<input
+												className={this.classname("name")}
+												placeholder="Name"
+												tabIndex="1"
+												required="required"
+												ref="name"
+												type='text'/>
+										<input
+												className={this.classname("lastName")}
+												placeholder="Last Name"
+												tabIndex="1"
+												required="required"
+												ref="lastName"
+												type='text'/>
+										<input
+												className={this.classname("password")}
+												tabIndex="2"
+												placeholder="Password"
+												required="required"
+												ref="passwordFirst"
+												type='password'/>
+										<input
+												className={this.classname("repeatPassword")}
+												tabIndex="2"
+												placeholder="Repeat password"
+												required="required"
+												ref="passwordSecond"
+												type='password'/>
+										<input
+											className={this.classname("avatar")}
+											tabIndex="2"
+											placeholder="Paste here link to your avatar"
+											required="required"
+											ref="avatar"
+											type='text'/>
                 </div>
                 <button
                     className={this.classname("registerButton")}

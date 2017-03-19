@@ -28,8 +28,8 @@ function mapStateToProps() {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        registerAction: (mail, password) => {
-            dispatch(RegisterAction(mail, password))
+        registerAction: (login, name, lastName, password, avatar) => {
+            dispatch(RegisterAction(login, name, lastName, password, avatar))
         },
         onAbort: () => {
             dispatch(push("/"))
