@@ -14,7 +14,7 @@ export function requestLogin(login, password) {
                     avatar
                     description
                 }
-                success
+                error
                 message
               }
             }
@@ -22,12 +22,11 @@ export function requestLogin(login, password) {
         requestGraphQL(query)
             .then((response) => {
                 const {login} = response;
-                if (login.success === "true") {
-                    resolve(login)
+                if (login.error === "true") {
+                    throw new Error('User is not preset in database')
                     return
                 }
-                throw new Error('User is not preset in database')
-
+                resolve(login)
             })
             .catch(reject)
     })
