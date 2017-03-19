@@ -5,15 +5,18 @@ export function requestLogin(login, password) {
         let query = `
             query{
               login(login:"${login}", password:"${password}"){
-                login
-                password
+                name
+                lastName
+                avatar
+                friends
                 success
+                message
               }
             }
         `;
         requestGraphQL(query)
             .then((response) => {
-                const {login} = response
+                const {login} = response;
                 if (login.success === "true") {
                     resolve(login)
                     return
