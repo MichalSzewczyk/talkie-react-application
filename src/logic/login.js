@@ -8,7 +8,12 @@ export function requestLogin(login, password) {
                 name
                 lastName
                 avatar
-                friends
+                friends{
+                    name
+                    lastName
+                    avatar
+                    description
+                }
                 success
                 message
               }
