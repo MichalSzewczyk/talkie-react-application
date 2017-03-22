@@ -18,6 +18,7 @@ export default (nextState, transition, callback) => {
                 callback()
             })
             .catch(() => {
+                clearLoggedFromLocalStorage()
                 transition('/');
                 callback()
             })

@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const config = {
     context: path.join(__dirname, 'src/'),
-    devtool: '#inline-source-map',
+    devtool: 'inline-source-map',
     entry: [
         './index.js'
     ],

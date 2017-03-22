@@ -21,8 +21,10 @@ class TCP {
         this.messagesCollection = []
     }
 
-    onMessage = (...args) => {
-        console.log('MESSAGE RECEIVED:', args)
+    onMessage = (packedMessage) => {
+        if (this.onMessageReceived) {
+            this.onMessageReceived(packedMessage.data)
+        }
     }
     onClose = () => {
         console.log('WEBSOCKET CLOSE')
