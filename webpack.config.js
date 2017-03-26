@@ -36,6 +36,10 @@ const config = {
             {
                 from:'./resources/image/login_background_edited.jpg',
                 to:'./login_background_edited.jpg'
+            },
+            {
+                from:'./resources/image/crying_jordan.png',
+                to:'./crying_jordan.png'
             }
         ])
     ]

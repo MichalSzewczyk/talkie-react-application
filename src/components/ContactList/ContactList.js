@@ -1,7 +1,7 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
 import ContactListItem from './ContactListItem'
-
+import EmptyContactListWarning from './EmptyContactListWarning'
 class ContactList extends React.PureComponent {
 
     constructor() {
@@ -36,10 +36,12 @@ class ContactList extends React.PureComponent {
     render() {
         const {contacts, onUserSelect} = this.props
         const parsedContacts = this.createContactList(contacts, onUserSelect)
+        const isContactListEmpty = parsedContacts.length === 0
 
         return (
             <div className={this.classname()}>
-                {parsedContacts}
+                {isContactListEmpty && <EmptyContactListWarning/>}
+                {!isContactListEmpty && parsedContacts}
             </div>
         )
     }
