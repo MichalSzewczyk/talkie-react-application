@@ -8,7 +8,8 @@ ReactDOM.render(
     <ProviderWrapper>
         <Main />
     </ProviderWrapper>
-    , document.querySelector('#app'))
+    , document.querySelector('#app')
+)
 
 if (module.hot) {
     module.hot.accept()

@@ -3,12 +3,13 @@ import {
     TCP_CONNECTION_FAILED,
     TCP_CONNECTION_INITIALIZATION
 } from './../ducks/chat'
-import TcpFacade from './../tcp/tcpFacade'
+import TcpManager from '../tcp/TcpManager'
 
 export default () => {
     return (dispatch) => {
         dispatch(TCP_CONNECTION_INITIALIZATION())
-        TcpFacade.initializeTCPConnection()
+
+        TcpManager.createNewWebsocket()
             .then(() => {
                 dispatch(TCP_CONNECTION_CREATED())
                 return

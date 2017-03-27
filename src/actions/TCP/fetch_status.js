@@ -1,4 +1,4 @@
-import TCPFacade from './../../tcp/tcpFacade'
+import TCPFacade from '../../tcp/TcpManager'
 import TCP_CONSTANTS from './../../constants/TCP'
 export default () => {
     return (dispatch, getState) => {

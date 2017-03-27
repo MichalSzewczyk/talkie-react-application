@@ -1,34 +1,33 @@
 import store from './../store'
 import loginAction from './../actions/login';
+
 const loginDataLocalStorageKey = 'userLoginData'
-export default (nextState, transition, callback) => {
+export default (nextState, transition, continueRouting) => {
 
     const state = store.getState()
     const dispatch = store.dispatch
     const localStorageData = loadLoggedFromLocalStorage()
     const {account} = state
     if (account.logged) {
-        callback()
+        continueRouting()
         return
     }
 
     if (!account.logged && localStorageData) {
         tryToLoginWithLocalStorageData(localStorageData, dispatch)
             .then(() => {
-                callback()
+                continueRouting()
             })
             .catch(() => {
                 clearLoggedFromLocalStorage()
                 transition('/');
-                callback()
+                continueRouting()
             })
         return
     }
 
     transition('/')
-    callback()
-
-
+    continueRouting()
 }
 
 function tryToLoginWithLocalStorageData(localStorageData, dispatch) {

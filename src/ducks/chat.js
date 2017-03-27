@@ -2,7 +2,7 @@ import {createAction, handleActions} from 'redux-actions'
 import MESSAGE_TYPES from './../constants/message_types'
 import TCP_CONSTANTS from './../constants/TCP'
 import UniqueKeyGenerator from './../utils/uniqueKeyGeneartor'
-import TCPFacade from './../tcp/tcpFacade'
+import TCPFacade from '../tcp/TcpManager'
 export const TCP_CONNECTION_INITIALIZATION = createAction('CHAT/TCP/TCP_CONNECTION_INITIALIZATION')
 export const TCP_CONNECTION_CREATED = createAction('CHAT/TCP/TCP_CONNECTION_CREATED')
 export const TCP_CONNECTION_FAILED = createAction('CHAT/TCP/TCP_CONNECTION_FAILED')
