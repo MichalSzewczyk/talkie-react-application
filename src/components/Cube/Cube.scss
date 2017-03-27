@@ -1,0 +1,55 @@
+.Cube {
+  perspective: none;
+  perspective-origin: 0 0;
+  height: 100%;
+  $size: 250px;
+  transition: all 2s linear;
+  &__wrapper {
+    position: relative;
+    width: $size;
+    height: 100%;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    //animation: cube-spin 5s infinite linear;
+    & > div {
+      position: absolute;
+      width: $size;
+      height: 100%;
+    }
+  }
+
+  &__front {
+    transform: translateZ(calc(#{$size} / 2));
+  }
+
+  &__back {
+    transform: translateZ(calc(-#{$size} / 2)) rotateY(180deg);
+  }
+
+  &__left {
+    transform: rotateY(270deg) translateX(calc(-#{$size} / 2));
+    transform-origin: center left;
+  }
+
+  &__right {
+    transform: rotateY(-270deg) translateX(calc(#{$size} / 2));
+    transform-origin: top right;
+  }
+  .addRotateLeftAnimation {
+    animation: rotateLeft 2s;
+    animation-fill-mode: forwards;
+  }
+  @keyframes rotateLeft {
+    to {
+      transform: rotateY(-90deg);
+    }
+  }
+  @keyframes cube-spin {
+    from {
+      transform: rotateY(0);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+}

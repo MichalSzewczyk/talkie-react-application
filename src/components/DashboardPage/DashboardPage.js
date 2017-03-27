@@ -2,7 +2,7 @@ import React from 'react'
 import bemClassName from 'bem-classname'
 import ContactList from './../../containers/ContactListWrapper'
 import Chat from './../../components/Chat'
-
+import Cube from './../../components/Cube'
 class DashboardPage extends React.PureComponent {
 
     constructor() {
@@ -15,7 +15,9 @@ class DashboardPage extends React.PureComponent {
         return (
             <div className={this.classname()}>
                 <div className={this.classname('box')}>
-                    <ContactList/>
+                    {<Cube
+                        front={<ContactList/>}
+                    />}
                     {this.props.children}
                 </div>
             </div>

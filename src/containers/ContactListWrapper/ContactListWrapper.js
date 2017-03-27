@@ -1,5 +1,6 @@
 import React from 'react'
 import ContactList from './../../components/ContactList'
+import ContactListHeader from './../../components/ContactList/ContactListHeader'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 
@@ -9,10 +10,13 @@ class ContactListWrapper extends React.PureComponent {
         const {contactsList, onUserSelect} = this.props
 
         return (
-            <ContactList
-                onUserSelect={onUserSelect}
-                contacts={contactsList}
-            />
+            <div className="ContactListWrapper">
+                <ContactListHeader/>
+                <ContactList
+                    onUserSelect={onUserSelect}
+                    contacts={contactsList}
+                />
+            </div>
         )
     }
 }

@@ -11,11 +11,12 @@ class EmptyContactListWarning extends React.PureComponent {
     }
 
     convertTextToHTML(text) {
+        let i = 0;
         return text && text.split('').map(char => {
                 if (char === ' ') {
-                    return <br/>
+                    return <br key={i++}/>
                 }
-                return <span>{char}</span>
+                return <span key={i++}>{char}</span>
             });
 
     }
