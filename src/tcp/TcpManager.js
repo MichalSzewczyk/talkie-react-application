@@ -58,17 +58,17 @@ function onClose() {
 }
 
 function reconnect() {
-
-    let interval = setInterval(() => {
-        console.log('[TCP] Reconnecting ...')
-        instance.createNewWebsocket()
-            .then(() => {
-                clearInterval(interval)
-            })
-            .catch(() => {
-                console.log('[TCP] Reconnection failed')
-            })
-    }, 10000)
+    console.log('RECONNECT')
+    // let interval = setInterval(() => {
+    //     console.log('[TCP] Reconnecting ...')
+    //     instance.createNewWebsocket()
+    //         .then(() => {
+    //             clearInterval(interval)
+    //         })
+    //         .catch(() => {
+    //             console.log('[TCP] Reconnection failed')
+    //         })
+    // }, 10000)
 }
 
 export default  instance;
