@@ -12,14 +12,16 @@ class TcpManager {
 
     createNewWebsocket() {
         return new Promise((resolve, reject) => {
+            console.log('[TCP] Connecting ...')
             this.websocket = new WebSocket(TCP_CONSTANTS.connectionURL);
 
             this.websocket.onopen = () => {
-                console.log('[TCP] WEBSOCKET OPENED')
+                console.log('[TCP] Connection Established')
                 resolve()
             }
-            this.websocket.onclose = onClose;
+
             this.websocket.onmessage = onMessage
+            this.websocket.onerror = onClose
         })
     }
 
@@ -53,22 +55,18 @@ function onMessage(message) {
 }
 
 function onClose() {
-    console.log('[TCP] WEBSOCKET CLOSED')
-    reconnect()
+    console.log('[TCP]Connection closed')
+    if (!instance.interval) {
+        reconnect()
+    }
+
 }
 
 function reconnect() {
-    console.log('RECONNECT')
-    // let interval = setInterval(() => {
-    //     console.log('[TCP] Reconnecting ...')
-    //     instance.createNewWebsocket()
-    //         .then(() => {
-    //             clearInterval(interval)
-    //         })
-    //         .catch(() => {
-    //             console.log('[TCP] Reconnection failed')
-    //         })
-    // }, 10000)
+
+    setTimeout(() => {
+        instance.createNewWebsocket()
+    }, 10000)
 }
 
 export default  instance;
