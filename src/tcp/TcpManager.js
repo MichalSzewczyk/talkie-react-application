@@ -31,19 +31,23 @@ class TcpManager {
     }
 
     send(type, payload) {
-        console.log('[TCP] SEND', type, payload)
-        const message = createMessage(0, type, payload)
-        console.log('MESSAGE',this)
-        try{
-            instance.websocket.send(message)
-        }catch(e){
-            console.error('E',e)
-        }
 
+        const message = createMessage(0, type, payload)
+
+        if (isSocketAvailable()) {
+            console.log('[TCP] SEND', type, payload)
+            instance.websocket.send(message)
+        } else {
+            console.warn('[TCP] Cannont send. Connection Unavailable')
+        }
     }
 
 }
 const instance = new TcpManager();
+
+function isSocketAvailable() {
+    return !!instance.websocket && instance.websocket.readyState === 4;
+}
 
 function createMessage(id, type, payload) {
     return JSON.stringify({
