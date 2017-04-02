@@ -1,10 +1,11 @@
-import TCPFacade from '../../tcp/TcpManager'
+import TCPManager from '../../tcp/TcpManager'
 import TCP_CONSTANTS from './../../constants/TCP'
+
 export default () => {
     return (dispatch, getState) => {
         const state = getState()
         const listOfUsers = createListOfUsers(state.contacts.list)
-        TCPFacade.send(TCP_CONSTANTS.messageTypes.FETCH_USER_STATUS, {
+        TCPManager.send(TCP_CONSTANTS.messageTypes.FETCH_USER_STATUS, {
             listOfUsers
         })
 

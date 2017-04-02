@@ -1,5 +1,5 @@
 export default {
-    connectionURL: 'wss://localhost:8090/echo',
+    connectionURL: 'ws://localhost:8090/echo',
     websocketStates: {
         'CONNECTING': 0,
         'OPEN': 1,

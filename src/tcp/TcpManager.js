@@ -33,7 +33,13 @@ class TcpManager {
     send(type, payload) {
         console.log('[TCP] SEND', type, payload)
         const message = createMessage(0, type, payload)
-        this.websocket.send(message)
+        console.log('MESSAGE',this)
+        try{
+            instance.websocket.send(message)
+        }catch(e){
+            console.error('E',e)
+        }
+
     }
 
 }
