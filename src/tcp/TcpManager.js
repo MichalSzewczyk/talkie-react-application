@@ -16,14 +16,12 @@ class TcpManager {
             this.websocket = new WebSocket(TCP_CONSTANTS.connectionURL);
             this.websocket.onopen = () => {
                 console.log('[TCP] Connection Established')
-                setTimeout(() => {
-                    this.websocket.send('I co kurwa kto jest mistrzem JAVY?')
-                }, 2000)
                 resolve()
             }
 
             this.websocket.onmessage = onMessage
             this.websocket.onerror = onClose
+            this.websocket.onclose = onClose
         })
     }
 
@@ -40,7 +38,7 @@ class TcpManager {
             console.log('[TCP] SEND', type, payload)
             instance.websocket.send(message)
         } else {
-            console.warn('[TCP] Cannont send. Connection Unavailable')
+            console.warn('[TCP] Cannot send. Connection Unavailable')
         }
     }
 
@@ -48,7 +46,7 @@ class TcpManager {
 const instance = new TcpManager();
 
 function isSocketAvailable() {
-    return !!instance.websocket && instance.websocket.readyState === 4;
+    return !!instance.websocket && instance.websocket.readyState === TCP_CONSTANTS.websocketStates.OPEN;
 }
 
 function createMessage(id, type, payload) {
