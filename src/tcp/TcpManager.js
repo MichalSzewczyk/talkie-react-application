@@ -14,9 +14,11 @@ class TcpManager {
         return new Promise((resolve, reject) => {
             console.log('[TCP] Connecting ...')
             this.websocket = new WebSocket(TCP_CONSTANTS.connectionURL);
-
             this.websocket.onopen = () => {
                 console.log('[TCP] Connection Established')
+                setTimeout(() => {
+                    this.websocket.send('I co kurwa kto jest mistrzem JAVY?')
+                }, 2000)
                 resolve()
             }
 
