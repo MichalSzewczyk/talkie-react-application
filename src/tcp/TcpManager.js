@@ -6,10 +6,6 @@ class TcpManager {
     constructor() {
     }
 
-    isConnectionEstabilished() {
-        return !!this.websocket
-    }
-
     createNewWebsocket() {
         return new Promise((resolve, reject) => {
             console.log('[TCP] Connecting ...')
@@ -20,8 +16,14 @@ class TcpManager {
             }
 
             this.websocket.onmessage = onMessage
-            this.websocket.onerror = onClose
-            this.websocket.onclose = onClose
+            this.websocket.onerror = () => {
+                reject();
+                onError();
+            }
+            this.websocket.onclose = () => {
+                reject();
+                onClose();
+            }
         })
     }
 
@@ -66,17 +68,27 @@ function onMessage(message) {
 
 function onClose() {
     console.log('[TCP]Connection closed')
-    if (!instance.interval) {
-        reconnect()
+    reconnect()
+}
+function onError() {
+    console.log('[TCP]Connection Error')
+    reconnect()
+}
+const reconnect = (() => {
+    let isReconnecting = false;
+    return function () {
+        if (isReconnecting) {
+            return;
+        }
+        isReconnecting = true
+        setTimeout(() => {
+            instance.createNewWebsocket().then(() => {
+                isReconnecting = false;
+            }).catch(() => {
+                isReconnecting = false;
+            })
+        }, 3000)
     }
-
-}
-
-function reconnect() {
-
-    setTimeout(() => {
-        instance.createNewWebsocket()
-    }, 10000)
-}
+})()
 
 export default  instance;
