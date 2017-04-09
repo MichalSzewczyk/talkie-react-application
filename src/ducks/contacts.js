@@ -1,5 +1,7 @@
 import {createAction, handleActions} from 'redux-actions'
 import USER_CONSTANTS from './../constants/user'
+export const UPDATE_USERS_STATUS = createAction('CHAT/MESSAGE/STATUS/UPDATE')
+import _ from 'lodash'
 
 const defaultState = {
     list: []
@@ -16,6 +18,26 @@ const reducer = handleActions({
             list: addStatusToList(friends)
         }
         return newState
+    },
+    [UPDATE_USERS_STATUS().type]: (state, {payload}) => {
+        const arrayOfUserStatus = payload.payload.users
+        const contactsList = state.list;
+        const updatedContactList = contactsList.map(user => {
+            const userFromServer = arrayOfUserStatus.find(item => item.id === user.id)
+            if (!userFromServer) {
+                return user;
+            }
+            const status = userFromServer.status === "1" ? USER_CONSTANTS.STATUS.ONLINE : USER_CONSTANTS.STATUS.OFFLINE
+
+            return _.extend(_.cloneDeep(user), {
+                status
+            });
+        })
+
+        const newState = _.assign(_.cloneDeep(state), {
+            list: updatedContactList
+        });
+        return newState;
     }
 }, defaultState)
 

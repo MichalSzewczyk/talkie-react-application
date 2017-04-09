@@ -5,7 +5,7 @@ export default () => {
     return (dispatch, getState) => {
         const state = getState()
         const listOfUsers = createListOfUsers(state.contacts.list)
-        TCPManager.send(TCP_CONSTANTS.messageTypes.FETCH_USER_STATUS, {
+        TCPManager.send(TCP_CONSTANTS.sendMessageTypes.FETCH_USER_STATUS, {
             listOfUsers
         })
 

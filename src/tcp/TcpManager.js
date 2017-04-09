@@ -1,6 +1,8 @@
 import TCP_CONSTANTS from './../constants/TCP'
 let regeneratorRuntime = require("regenerator-runtime");
 import store from './../store'
+import receivedMessageHandler from './received_message_handler'
+
 
 class TcpManager {
     constructor() {
@@ -33,7 +35,6 @@ class TcpManager {
     }
 
     send(type, payload) {
-
         const state = store && store.getState();
         const userID = state.account.id;
         const message = createMessage(userID, type, payload)
@@ -66,6 +67,12 @@ function createMessage(id, type, payload) {
 function onMessage(message) {
     const decodedMessage = JSON.parse(message.data)
     console.log('[TCP] RECEIVED MESSAGE', decodedMessage)
+    try {
+        store.dispatch(receivedMessageHandler(decodedMessage));
+    } catch (e) {
+        console.error('Error during hanlding message', e, decodedMessage)
+    }
+
 }
 
 function onClose() {

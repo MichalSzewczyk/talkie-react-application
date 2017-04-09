@@ -6,6 +6,6 @@ export default (dispatch) => {
     return (receiverId, body, timestamp) => {
         const data = {timestamp, body, receiverId}
         dispatch(MESSAGE_SEND(data))
-        TCPManager.send(TCP_CONSTANTS.messageTypes.SEND_MESSAGE, data)
+        TCPManager.send(TCP_CONSTANTS.sendMessageTypes.SEND_MESSAGE, data)
     }
 }

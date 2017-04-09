@@ -43,11 +43,6 @@ const reducer = handleActions({
 
         return newState;
     },
-    [MESSAGE_RECEIVE().type]: (state) => {
-
-        // TODO: implement
-        return state;
-    },
     [TCP_CONNECTION_INITIALIZATION().type]: (state) => {
         const newState = Object.assign({}, state, {
             isConnectionInProgress: true,
