@@ -34,9 +34,11 @@ const reducer = handleActions({
             body: action.payload.body,
             uniqueID: UniqueKeyGenerator()
         })
+        console.log('action',action)
         TCPFacade.send(TCP_CONSTANTS.messageTypes.SEND_MESSAGE, {
             timestamp: action.payload.timestamp,
             body: action.payload.body,
+            to: action.payload.to
         })
 
         const newState = Object.assign({}, state, {
