@@ -3,6 +3,8 @@ import Chat from './../../components/Chat'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import * as ChatReducer from './../../ducks/chat'
+import TCPActions from './../../actions/TCP'
+
 import _ from 'lodash'
 
 class ChatWrapper extends React.PureComponent {
@@ -47,13 +49,7 @@ function mapDistpachToProps(dispatch, props) {
         onChatExit: () => {
             dispatch(push(`/dashboard`))
         },
-        sendMessage: (body, timestamp) => {
-            dispatch(ChatReducer.MESSAGE_SEND({
-                to: chatWith,
-                body,
-                timestamp
-            }));
-        }
+        sendMessage: dispatch(TCPActions.SEND_MESSAGE).bind(null, chatWith)
     }
 }
 export default connect(mapStateToProps, mapDistpachToProps)(ChatWrapper)

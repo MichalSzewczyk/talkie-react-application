@@ -27,55 +27,49 @@ const reducer = handleActions({
         return newState;
     },
     [MESSAGE_SEND().type]: (state, action) => {
-        const oldMessages = state[action.payload.to].messages
+        const {receiverId} = action.payload
+        const oldMessages = state[receiverId].messages
         const updatedMessagesList = _.concat(oldMessages, {
             type: MESSAGE_TYPES.SENT,
-            timestamp: action.payload.timestamp,
-            body: action.payload.body,
+            ...action.payload,
             uniqueID: UniqueKeyGenerator()
-        })
-        console.log('action',action)
-        TCPFacade.send(TCP_CONSTANTS.messageTypes.SEND_MESSAGE, {
-            timestamp: action.payload.timestamp,
-            body: action.payload.body,
-            to: action.payload.to
         })
 
         const newState = Object.assign({}, state, {
-            [action.payload.to]: {
+            [receiverId]: {
                 messages: updatedMessagesList
             }
         })
 
         return newState;
     },
-    [MESSAGE_RECEIVE().type]: (state, action) => {
+    [MESSAGE_RECEIVE().type]: (state) => {
 
         // TODO: implement
         return state;
     },
-    [TCP_CONNECTION_INITIALIZATION().type]: (state, action) => {
+    [TCP_CONNECTION_INITIALIZATION().type]: (state) => {
         const newState = Object.assign({}, state, {
             isConnectionInProgress: true,
             tcpAlive: false
         })
         return newState
     },
-    [TCP_CONNECTION_CREATED().type]: (state, action) => {
+    [TCP_CONNECTION_CREATED().type]: (state) => {
         const newState = Object.assign({}, state, {
             isConnectionInProgress: false,
             tcpAlive: true
         })
         return newState
     },
-    [TCP_CONNECTION_FAILED().type]: (state, action) => {
+    [TCP_CONNECTION_FAILED().type]: (state) => {
         const newState = Object.assign({}, state, {
             isConnectionInProgress: false,
             tcpAlive: false
         })
         return newState
     },
-    [TCP_CONNECTION_DISCONNECTED().type]: (state, action) => {
+    [TCP_CONNECTION_DISCONNECTED().type]: (state) => {
         const newState = Object.assign({}, state, {
             isConnectionInProgress: false,
             tcpAlive: false
