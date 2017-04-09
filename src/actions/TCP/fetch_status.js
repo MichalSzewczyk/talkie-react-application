@@ -4,9 +4,8 @@ import TCP_CONSTANTS from './../../constants/TCP'
 export default () => {
     return (dispatch, getState) => {
         const state = getState()
-        const userId = state.account.id;
         const listOfUsers = createListOfUsers(state.contacts.list)
-        TCPManager.send(TCP_CONSTANTS.messageTypes.FETCH_USER_STATUS, userId, {
+        TCPManager.send(TCP_CONSTANTS.messageTypes.FETCH_USER_STATUS, {
             listOfUsers
         })
 
