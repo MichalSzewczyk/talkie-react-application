@@ -1,7 +1,6 @@
 import TCP_CONSTANTS from './../constants/TCP'
 let regeneratorRuntime = require("regenerator-runtime");
 
-
 class TcpManager {
     constructor() {
     }
@@ -32,9 +31,9 @@ class TcpManager {
         this.websocket = null;
     }
 
-    send(type, payload) {
+    send(type, userId, payload) {
 
-        const message = createMessage(0, type, payload)
+        const message = createMessage(userId, type, payload)
 
         if (isSocketAvailable()) {
             console.log('[TCP] SEND', type, payload)

@@ -16,12 +16,13 @@ const reducer = handleActions({
                 message: action.payload.message
             })
         } else {
-            const {name, lastName, avatar} = action.payload;
+            const {name, lastName, avatar, id} = action.payload;
             newState = Object.assign({}, state, {
                 logged: true,
                 name,
                 lastName,
-                avatar
+                avatar,
+                id
             })
         }
 

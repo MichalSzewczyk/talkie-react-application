@@ -9,6 +9,7 @@ export function requestLogin(login, password) {
                 name
                 lastName
                 avatar
+                id
                 friends{
                     id
                     name
