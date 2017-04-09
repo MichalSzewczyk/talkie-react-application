@@ -4,6 +4,7 @@ import {requestLogin} from './../logic/login'
 import {push} from 'react-router-redux';
 import {saveUserCredentialsToLocalStorage} from './../logic/auth'
 import FETCH_STATUS from './TCP/fetch_status'
+import userStatus from './../tcp/userStatus'
 
 export default function loginAction(login, password, redirectToDashboard = true) {
     return (dispatch) => {
@@ -15,6 +16,7 @@ export default function loginAction(login, password, redirectToDashboard = true)
                     dispatch(LOGIN(loginObject))
                     dispatch(SET_CONTACTS({friends}))
                     dispatch(FETCH_STATUS())
+                    dispatch(userStatus.start())
                     if (redirectToDashboard) {
                         dispatch(push('/dashboard'))
                     }

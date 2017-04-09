@@ -49,4 +49,5 @@ function addStatusToList(list) {
     })
 }
 
+
 export default reducer
