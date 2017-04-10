@@ -42,7 +42,27 @@ const reducer = handleActions({
         })
 
         return newState;
+    }, [MESSAGE_RECEIVE().type]: (state, {payload}) => {
+        // TODO: FIX
+        const senderId = payload.id;
+        const {body, timestamp} = payload.payload
+        const oldMessages = state[senderId] && state[senderId].messages || []
+        const updatedMessagesList = _.concat(oldMessages, {
+            type: MESSAGE_TYPES.RECEIVED,
+            body,
+            timestamp,
+            uniqueID: UniqueKeyGenerator()
+        })
+
+        const newState = Object.assign({}, state, {
+            [senderId]: {
+                messages: updatedMessagesList
+            }
+        })
+
+        return newState;
     },
+
     [TCP_CONNECTION_INITIALIZATION().type]: (state) => {
         const newState = Object.assign({}, state, {
             isConnectionInProgress: true,
