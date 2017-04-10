@@ -1,17 +1,22 @@
 .Message {
   display: flex;
   padding: 10px;
+  $CloudBoxPadding: 7px;
+  &__cloudBox {
+
+    background-color: #0084ff;
+    border-radius: $CloudBoxPadding $CloudBoxPadding 0 $CloudBoxPadding;
+    padding: 6px 12px;
+  }
   &--SENT {
     justify-content: flex-end;
   }
   &--RECEIVED {
     justify-content: flex-start;
-  }
-  &__cloudBox {
-    $padding: 7px;
-    background-color: #0084ff;
-    border-radius: $padding $padding 0 $padding;
-    padding: 6px 12px;
+    .Message__cloudBox {
+      border-radius: $CloudBoxPadding $CloudBoxPadding $CloudBoxPadding 0;
+      background-color: #7E44AD;
+    }
   }
   &__value {
     font-size: 14px;

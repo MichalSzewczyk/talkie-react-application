@@ -20,7 +20,7 @@ const defaultState = {
 const reducer = handleActions({
     [START_CHAT().type]: (state, action) => {
         const userIdToTalkWith = action.payload.with;
-        
+
         if (state[userIdToTalkWith]) {
             return state;
         }
