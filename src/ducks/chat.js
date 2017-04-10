@@ -19,12 +19,16 @@ const defaultState = {
 
 const reducer = handleActions({
     [START_CHAT().type]: (state, action) => {
-        const newState = Object.assign({}, state, {
-            [action.payload.with]: {
+        const userIdToTalkWith = action.payload.with;
+        
+        if (state[userIdToTalkWith]) {
+            return state;
+        }
+        return Object.assign({}, state, {
+            [userIdToTalkWith]: {
                 messages: []
             }
         })
-        return newState;
     },
     [MESSAGE_SEND().type]: (state, action) => {
         const {receiverId} = action.payload
