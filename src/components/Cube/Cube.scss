@@ -3,12 +3,12 @@
   perspective-origin: 0 0;
   height: 100%;
   $size: 250px;
-  transition: all 2s linear;
   &__wrapper {
     position: relative;
     width: $size;
     height: 100%;
     margin: 0 auto;
+    transition: transform 0.7s cubic-bezier(0.18, 0.89, 0.32, 1.28);
     transform-style: preserve-3d;
     //animation: cube-spin 5s infinite linear;
     & > div {

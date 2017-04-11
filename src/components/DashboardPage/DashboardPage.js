@@ -4,12 +4,15 @@ import ContactList from './../../containers/ContactListWrapper'
 import Chat from './../../components/Chat'
 import Cube from './../../components/Cube'
 import CUBE_CONSTANT from './../../constants/Cube'
+import AddNewFriendWrapper from './../../containers/AddNewFriendWrapper'
+
 class DashboardPage extends React.PureComponent {
 
     constructor() {
         super()
         this.classname = bemClassName.bind(null, 'DashboardPage')
         this.onSwitchToUserAdd = this.onSwitchToUserAdd.bind(this)
+        this.onSwitchToContactList = this.onSwitchToContactList.bind(this)
         this.state = {
             cubeDirection: CUBE_CONSTANT.FRONT
         }
@@ -21,6 +24,12 @@ class DashboardPage extends React.PureComponent {
         })
     }
 
+    onSwitchToContactList() {
+        this.setState({
+            cubeDirection: CUBE_CONSTANT.FRONT
+        })
+    }
+
     render() {
         const {cubeDirection} = this.state;
         return (
@@ -29,7 +38,7 @@ class DashboardPage extends React.PureComponent {
                     {<Cube
                         direction={cubeDirection}
                         front={<ContactList onSwitchToUserAdd={this.onSwitchToUserAdd}/>}
-                        back={<span>TEST</span>}
+                        back={<AddNewFriendWrapper onSwitchToContactList={this.onSwitchToContactList}/>}
                     />}
                     {this.props.children}
                 </div>
