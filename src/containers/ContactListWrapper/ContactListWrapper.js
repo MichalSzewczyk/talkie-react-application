@@ -6,15 +6,38 @@ import {push} from 'react-router-redux'
 
 class ContactListWrapper extends React.PureComponent {
 
+    constructor() {
+        super();
+        this.onUserSearchChange = this.onUserSearchChange.bind(this);
+        this.state = {
+            inputedSearchValue: ''
+        }
+    }
+
+    onUserSearchChange(inputValue = '') {
+        this.setState({
+            inputedSearchValue: inputValue
+        })
+    }
+
+    filterContactList(contactList) {
+        const regex = new RegExp(this.state.inputedSearchValue, 'i');
+        return contactList.filter(contact => {
+            return regex.test(`${contact.name} ${contact.lastName}`);
+        })
+    }
+
     render() {
         const {contactsList, onUserSelect} = this.props
-
+        const filteredContactList = this.filterContactList(contactsList);
         return (
             <div className="ContactListWrapper">
-                <ContactListHeader/>
+                <ContactListHeader
+                    onUserSearchChange={this.onUserSearchChange}
+                />
                 <ContactList
                     onUserSelect={onUserSelect}
-                    contacts={contactsList}
+                    contacts={filteredContactList}
                 />
             </div>
         )
