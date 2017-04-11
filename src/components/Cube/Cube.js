@@ -1,5 +1,6 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
+import CUBE_CONSTANT from './../../constants/Cube'
 
 class Cube extends React.PureComponent {
 
@@ -9,12 +10,15 @@ class Cube extends React.PureComponent {
         this.actualRotate = 0;
     }
 
-    onLeft() {
-        this.setCubeRotate(-90)
-    }
-
-    onRight() {
-        this.setCubeRotate(90)
+    componentWillUpdate(nextProps) {
+        switch (nextProps.direction) {
+            case CUBE_CONSTANT.FRONT:
+                this.setCubeRotate(0);
+                break;
+            case CUBE_CONSTANT.BACK:
+                this.setCubeRotate(180);
+                break;
+        }
     }
 
     setCubeRotate(degrees) {

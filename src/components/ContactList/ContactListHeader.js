@@ -8,6 +8,7 @@ class ContactListHeader extends React.PureComponent {
         super()
         this.onInputChange = this.onInputChange.bind(this)
         this.classname = bemClassName.bind(null, 'ContactListHeader')
+        this.onSwitchToUserAdd = this.onSwitchToUserAdd.bind(this)
     }
 
     onInputChange(event) {
@@ -16,11 +17,16 @@ class ContactListHeader extends React.PureComponent {
         onUserSearchChange(inputValue);
     }
 
+    onSwitchToUserAdd() {
+        const {onSwitchToUserAdd} = this.props;
+        onSwitchToUserAdd();
+    }
+
     render() {
         return (
             <div className={this.classname()}>
                 <input onChange={this.onInputChange} className={this.classname('searchInput')} type="text"/>
-                <Icon className={this.classname('addNewFriend')} icon={plusIcon}/>
+                <Icon onClick={this.onSwitchToUserAdd} className={this.classname('addNewFriend')} icon={plusIcon}/>
             </div>
         )
     }

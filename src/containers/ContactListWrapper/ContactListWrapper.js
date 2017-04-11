@@ -28,12 +28,13 @@ class ContactListWrapper extends React.PureComponent {
     }
 
     render() {
-        const {contactsList, onUserSelect} = this.props
+        const {contactsList, onUserSelect, onSwitchToUserAdd} = this.props
         const filteredContactList = this.filterContactList(contactsList);
         return (
             <div className="ContactListWrapper">
                 <ContactListHeader
                     onUserSearchChange={this.onUserSearchChange}
+                    onSwitchToUserAdd={onSwitchToUserAdd}
                 />
                 <ContactList
                     onUserSelect={onUserSelect}
