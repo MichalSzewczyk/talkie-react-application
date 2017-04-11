@@ -11,9 +11,10 @@ class Cube extends React.PureComponent {
     }
 
     componentWillUpdate(nextProps) {
+        console.log('DIRECTION', nextProps)
         switch (nextProps.direction) {
             case CUBE_CONSTANT.FRONT:
-                this.setCubeRotate(-180);
+                this.setCubeRotate(0);
                 break;
             case CUBE_CONSTANT.BACK:
                 this.setCubeRotate(180);
@@ -22,7 +23,7 @@ class Cube extends React.PureComponent {
     }
 
     setCubeRotate(degrees) {
-        this.actualRotate -= degrees;
+        this.actualRotate = degrees;
         this.refs.Cube.style.transform = `rotateY(${this.actualRotate}deg)`;
     }
 

@@ -19,12 +19,14 @@ class DashboardPage extends React.PureComponent {
     }
 
     onSwitchToUserAdd() {
+        console.log('onSwitchToUserAdd')
         this.setState({
             cubeDirection: CUBE_CONSTANT.BACK
         })
     }
 
     onSwitchToContactList() {
+        console.log('onSwitchToContactList')
         this.setState({
             cubeDirection: CUBE_CONSTANT.FRONT
         })
