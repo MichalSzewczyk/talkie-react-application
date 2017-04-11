@@ -34,16 +34,27 @@ class ContactList extends React.PureComponent {
     }
 
     render() {
-        const {contacts, onUserSelect} = this.props
+        const {contacts, onUserSelect, EmptyListComponent} = this.props
         const parsedContacts = this.createContactList(contacts, onUserSelect)
         const isContactListEmpty = parsedContacts.length === 0
 
         return (
             <div className={this.classname()}>
-                {isContactListEmpty && <EmptyContactListWarning/>}
+                {isContactListEmpty && <EmptyListComponent/>}
                 {!isContactListEmpty && parsedContacts}
             </div>
         )
     }
+}
+ContactList.defaultProps = {
+    contacts: [],
+    onUserSelect: () => {
+    },
+    EmptyListComponent: EmptyContactListWarning
+}
+ContactList.propTypes = {
+    contacts: React.PropTypes.array,
+    onUserSelect: React.PropTypes.func,
+    EmptyListComponent: React.PropTypes.func
 }
 export default ContactList

@@ -1,0 +1,19 @@
+.NewFriendHeader {
+  padding-left: 10px;
+  padding-top: 12px;
+  display: flex;
+  &__backButton {
+    cursor: pointer;
+    border: none;
+    transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+    svg {
+      $size: 32px;
+      width: $size;
+      height: $size;
+      fill: #f9a23f;
+    }
+    &:hover {
+      transform: scale(.9);
+    }
+  }
+}

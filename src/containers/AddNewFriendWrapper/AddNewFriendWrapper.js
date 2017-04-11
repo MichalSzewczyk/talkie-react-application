@@ -1,24 +1,21 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
 import {connect} from 'react-redux'
+import NewFriendHeader from './../../components/NewFriendHeader'
+import ContactList from './../../components/ContactList'
 
 class AddNewFriendWrapper extends React.PureComponent {
     constructor() {
         super()
         this.classname = bemClassName.bind(null, 'AddNewFriendWrapper')
-        this.onBtnClick = this.onBtnClick.bind(this)
-    }
-
-    onBtnClick() {
-        const {onSwitchToContactList} = this.props;
-        onSwitchToContactList();
     }
 
     render() {
+        const {onSwitchToContactList} = this.props;
         return (
             <div className={this.classname()}>
-                <button onClick={this.onBtnClick}>BACK</button>
-                AddNewFriendWrapper
+                <NewFriendHeader onSwitchToContactList={onSwitchToContactList}/>
+                <ContactList/>
             </div>
         )
     }
