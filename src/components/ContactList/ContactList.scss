@@ -4,6 +4,7 @@
   flex-basis: 15%;
   background-color: #42494f;
   display: flex;
+  flex-direction: column;
   &__item {
     cursor: pointer;
     user-select: none;
