@@ -32,7 +32,7 @@ const reducer = handleActions({
     },
     [MESSAGE_SEND().type]: (state, action) => {
         const {receiverId} = action.payload
-        const oldMessages = state[receiverId].messages
+        const oldMessages = state[receiverId] && state[receiverId].messages || []
         const updatedMessagesList = _.concat(oldMessages, {
             type: MESSAGE_TYPES.SENT,
             ...action.payload,
