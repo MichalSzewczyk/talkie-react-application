@@ -23,7 +23,7 @@ const reducer = handleActions({
         const arrayOfUserStatus = payload.payload.users
         const contactsList = state.list;
         const updatedContactList = contactsList.map(user => {
-            const userFromServer = arrayOfUserStatus.find(item => item.id === user.id)
+            const userFromServer = arrayOfUserStatus.find(item => item.id == user.id)
             if (!userFromServer) {
                 return user;
             }
