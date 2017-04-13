@@ -8,6 +8,7 @@ class NewFriendHeader extends React.PureComponent {
         super()
         this.classname = bemClassName.bind(null, 'NewFriendHeader')
         this.onBackButtonClick = this.onBackButtonClick.bind(this)
+        this.onInputChange = this.onInputChange.bind(this)
     }
 
     onBackButtonClick() {
@@ -15,11 +16,18 @@ class NewFriendHeader extends React.PureComponent {
         onSwitchToContactList();
     }
 
+    onInputChange(event) {
+        const {onSearchInputChange} = this.props;
+        const value = event.target.value;
+        onSearchInputChange(value)
+    }
+
     render() {
         return (
             <div className={this.classname()}>
                 <Icon className={this.classname('backButton')} onClick={this.onBackButtonClick}
                       icon={backIcon}/>
+                <input onChange={this.onInputChange} type="text"/>
             </div>
         )
     }

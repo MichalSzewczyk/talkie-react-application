@@ -4,11 +4,15 @@ export const UPDATE_USERS_STATUS = createAction('CHAT/MESSAGE/STATUS/UPDATE')
 import _ from 'lodash'
 
 const defaultState = {
-    list: []
+    list: [],
+    isRequestingNewContacts: false
 }
 
 export const ON_USER_SELECT = createAction('CONTACT_LIST/ON_USER_SELECT')
 export const SET_CONTACTS = createAction('CONTACT_LIST/SET_CONTACTS')
+export const REQUEST_NEW_CONTACTS_STARTED = createAction('CONTACT_LIST/REQUEST_NEW_CONTACTS_STARTED')
+export const REQUEST_NEW_CONTACTS_FINISHED = createAction('CONTACT_LIST/REQUEST_NEW_CONTACTS_FINISHED')
+export const REQUEST_NEW_CONTACTS_FAILED = createAction('CONTACT_LIST/REQUEST_NEW_CONTACTS_FAILED')
 
 const reducer = handleActions({
     [SET_CONTACTS().type]: (state, action) => {
@@ -37,6 +41,24 @@ const reducer = handleActions({
         const newState = _.assign(_.cloneDeep(state), {
             list: updatedContactList
         });
+        return newState;
+    },
+    [REQUEST_NEW_CONTACTS_STARTED().type]: (state) => {
+        const newState = _.assign(state, {
+            isRequestingNewContacts: true
+        })
+        return newState;
+    },
+    [REQUEST_NEW_CONTACTS_FINISHED().type]: (state) => {
+        const newState = _.assign(state, {
+            isRequestingNewContacts: false
+        })
+        return newState;
+    },
+    [REQUEST_NEW_CONTACTS_FAILED().type]: (state) => {
+        const newState = _.assign(state, {
+            isRequestingNewContacts: false
+        })
         return newState;
     }
 }, defaultState)

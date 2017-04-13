@@ -3,6 +3,8 @@ import ContactList from './../../components/ContactList'
 import ContactListHeader from './../../components/ContactList/ContactListHeader'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
+import ContactListItem from './../../components/ContactList/ContactListItem'
+import EmptyContactListWarning from './../../components/ContactList/EmptyContactListWarning'
 
 class ContactListWrapper extends React.PureComponent {
 
@@ -27,9 +29,37 @@ class ContactListWrapper extends React.PureComponent {
         })
     }
 
+    static createContactItem(onUserSelect, contact) {
+        const {id, name, lastName, email, avatar, description, status} = contact
+
+        return (
+            <ContactListItem
+                id={id}
+                name={name}
+                lastName={lastName}
+                email={email}
+                avatar={avatar}
+                key={id}
+                description={description}
+                status={status}
+                onUserSelect={onUserSelect}
+            />
+        );
+    }
+
+
+    static createContactList(onUserSelect, list) {
+        const result = list
+            .map(ContactListWrapper.createContactItem.bind(null, onUserSelect))
+        return result;
+    }
+
+
     render() {
         const {contactsList, onUserSelect, onSwitchToUserAdd} = this.props
         const filteredContactList = this.filterContactList(contactsList);
+        const contactList = ContactListWrapper.createContactList(onUserSelect, filteredContactList);
+
         return (
             <div className="ContactListWrapper">
                 <ContactListHeader
@@ -37,9 +67,11 @@ class ContactListWrapper extends React.PureComponent {
                     onSwitchToUserAdd={onSwitchToUserAdd}
                 />
                 <ContactList
-                    onUserSelect={onUserSelect}
-                    contacts={filteredContactList}
-                />
+                    onEmptyList={EmptyContactListWarning}
+                    isEmpty={!contactList.length}
+                >
+                    {contactList}
+                </ContactList>
             </div>
         )
     }
