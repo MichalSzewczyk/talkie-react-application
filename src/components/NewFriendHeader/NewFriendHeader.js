@@ -27,7 +27,7 @@ class NewFriendHeader extends React.PureComponent {
             <div className={this.classname()}>
                 <Icon className={this.classname('backButton')} onClick={this.onBackButtonClick}
                       icon={backIcon}/>
-                <input onChange={this.onInputChange} type="text"/>
+                <input placeholder="Search" className={this.classname('searchInput')} onChange={this.onInputChange} type="text"/>
             </div>
         )
     }
