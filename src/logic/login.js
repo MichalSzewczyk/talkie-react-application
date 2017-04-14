@@ -1,8 +1,8 @@
 import requestGraphQL from './../utils/requestGraphQL'
-
+let xhr;
 export function requestLogin(login, password) {
-
     return new Promise((resolve, reject) => {
+        xhr ? xhr.abort() : false;
         let query = `
             query{
               login(login:"${login}", password:"${password}"){
@@ -22,7 +22,8 @@ export function requestLogin(login, password) {
               }
             }
         `;
-        requestGraphQL(query)
+        xhr = new XMLHttpRequest();
+        requestGraphQL(query, xhr)
             .then((response) => {
                 const {login} = response;
                 if (login.error === "true") {
