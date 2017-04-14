@@ -3,7 +3,7 @@ import bemClassName from 'bem-classname'
 import {connect} from 'react-redux'
 import NewFriendHeader from './../../components/NewFriendHeader'
 import ContactList from './../../components/ContactList'
-import SearchUsersAction from '../../actions/TCP/search_new_contacts'
+import SearchUsersAction from '../../actions/search_new_contacts'
 
 class AddNewFriendWrapper extends React.PureComponent {
 
