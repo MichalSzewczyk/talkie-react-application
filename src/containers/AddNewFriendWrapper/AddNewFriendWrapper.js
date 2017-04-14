@@ -4,13 +4,14 @@ import {connect} from 'react-redux'
 import NewFriendHeader from './../../components/NewFriendHeader'
 import ContactList from './../../components/ContactList'
 import SearchUsersAction from '../../actions/search_new_contacts'
+import _ from 'lodash'
 
 class AddNewFriendWrapper extends React.PureComponent {
 
     constructor() {
         super()
         this.classname = bemClassName.bind(null, 'AddNewFriendWrapper')
-        this.onSearchInputChange = this.onSearchInputChange.bind(this);
+        this.onSearchInputChange = _.debounce(this.onSearchInputChange.bind(this), 300);
     }
 
     createContactsToAdd() {
