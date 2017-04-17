@@ -9,17 +9,24 @@ class ChatBar extends React.PureComponent {
     constructor() {
         super()
         this.classname = bemClassName.bind(null, 'ChatBar')
+        this.onExitClick = ::this.onExitClick;
+    }
+
+    onExitClick() {
+        const {onChatExit, contactInfo} = this.props
+        onChatExit(contactInfo.id)
+        // userId
     }
 
     render() {
-        const {onChatExit, contactInfo} = this.props
+        const {contactInfo} = this.props
         const userName = `${contactInfo.name} ${contactInfo.lastName}`;
 
         return (
             <div className={this.classname()}>
                 <div
                     className={this.classname('closeIcon')}
-                    onClick={onChatExit}>
+                    onClick={this.onExitClick}>
                     <Icon icon={closeIcon}/>
                 </div>
                 <img className={this.classname('userAvatar')}

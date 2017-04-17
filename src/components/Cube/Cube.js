@@ -11,7 +11,6 @@ class Cube extends React.PureComponent {
     }
 
     componentWillUpdate(nextProps) {
-        console.log('DIRECTION', nextProps)
         switch (nextProps.direction) {
             case CUBE_CONSTANT.FRONT:
                 this.setCubeRotate(0);

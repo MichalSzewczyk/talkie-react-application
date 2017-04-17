@@ -46,7 +46,8 @@ function mapDistpachToProps(dispatch, props) {
             }));
         },
 
-        onChatExit: () => {
+        onChatExit: (userId) => {
+            dispatch(ChatReducer.CLOSE_CHAT(userId))
             dispatch(push(`/dashboard`))
         },
         sendMessage: dispatch(TCPActions.SEND_MESSAGE).bind(null, chatWith)

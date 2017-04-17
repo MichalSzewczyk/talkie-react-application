@@ -7,6 +7,7 @@ import ContactList from './../../components/ContactList'
 import SearchUsersAction from '../../actions/search_new_contacts'
 import _ from 'lodash'
 import AddNewContactAction from './../../actions/add_new_contact'
+import NewContactLoadMoreListItem from './../../components/NewContact/NewContactLoadMoreListItem'
 
 class NewContactWrapper extends React.Component {
 

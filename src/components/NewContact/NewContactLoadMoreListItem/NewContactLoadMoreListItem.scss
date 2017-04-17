@@ -1,0 +1,21 @@
+.NewContactLoadMoreListItem {
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  background-color: #232a32;
+  min-height: 70px;
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-family: raleway;
+  font-size: 14px;
+  justify-content: center;
+  &__button {
+    background-color: #56bd21;
+    padding: 11px 29px;
+    border-radius: 2px;
+    color: black;
+    font-weight:bold;
+  }
+}

@@ -9,6 +9,7 @@ export const TCP_CONNECTION_FAILED = createAction('CHAT/TCP/TCP_CONNECTION_FAILE
 export const TCP_CONNECTION_DISCONNECTED = createAction('CHAT/TCP/TCP_CONNECTION_DISCONNECTED')
 export const TCP_CONNECTION_DISCONNECT = createAction('CHAT/TCP/TCP_CONNECTION_DISCONNECT')
 export const START_CHAT = createAction('CHAT/CONVERSATION/START')
+export const CLOSE_CHAT = createAction('CHAT/CONVERSATION/CLOSE')
 export const MESSAGE_SEND = createAction('CHAT/SEND/MESSAGE/SEND')
 export const MESSAGE_RECEIVE = createAction('CHAT/MESSAGE/RECEIVE')
 
@@ -20,15 +21,34 @@ const defaultState = {
 const reducer = handleActions({
     [START_CHAT().type]: (state, action) => {
         const userIdToTalkWith = action.payload.with;
+        let newState = _.assign({}, state);
 
-        if (state[userIdToTalkWith]) {
-            return state;
+        if (!state[userIdToTalkWith]) {
+            newState = _.assign({}, state, {
+                [userIdToTalkWith]: {
+                    messages: [],
+                    isConversationOpened: true
+                }
+            })
+        } else {
+            newState = _.assign({}, state, {
+                [userIdToTalkWith]: _.assign({}, state[userIdToTalkWith], {
+                    isConversationOpened: true
+                })
+            })
         }
-        return Object.assign({}, state, {
-            [userIdToTalkWith]: {
-                messages: []
-            }
+
+        return newState;
+    },
+    [CLOSE_CHAT().type]: (state, {payload}) => {
+        const chattedWith = payload;
+        const newState = _.assign({}, state, {
+            [chattedWith]: _.assign({}, state[chattedWith], {
+                isConversationOpened: false
+            })
         })
+
+        return newState;
     },
     [MESSAGE_SEND().type]: (state, action) => {
         const {receiverId} = action.payload
@@ -41,7 +61,8 @@ const reducer = handleActions({
 
         const newState = Object.assign({}, state, {
             [receiverId]: {
-                messages: updatedMessagesList
+                messages: updatedMessagesList,
+                isConversationOpened: true
             }
         })
 
