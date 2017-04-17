@@ -2,11 +2,12 @@ import React from 'react'
 import bemClassName from 'bem-classname'
 import {connect} from 'react-redux'
 import NewFriendHeader from './../../components/NewFriendHeader'
+import NewFriendContactListItem from './NewFriendContactListItem'
 import ContactList from './../../components/ContactList'
 import SearchUsersAction from '../../actions/search_new_contacts'
 import _ from 'lodash'
 
-class AddNewFriendWrapper extends React.PureComponent {
+class AddNewFriendWrapper extends React.Component {
 
     constructor() {
         super()
@@ -14,8 +15,10 @@ class AddNewFriendWrapper extends React.PureComponent {
         this.onSearchInputChange = _.debounce(this.onSearchInputChange.bind(this), 300);
     }
 
-    createContactsToAdd() {
-        return []
+    createContactsToAdd(list = []) {
+        return list && list.map(item => {
+            return <NewFriendContactListItem key={item.id} contact={item}/>
+        })
     }
 
     onSearchInputChange(value) {
@@ -24,8 +27,8 @@ class AddNewFriendWrapper extends React.PureComponent {
     }
 
     render() {
-        const {onSwitchToContactList} = this.props;
-        const fakeContacts = this.createContactsToAdd();
+        const {onSwitchToContactList, newContacts} = this.props;
+        const fakeContacts = this.createContactsToAdd(newContacts);
         return (
             <div className={this.classname()}>
                 <NewFriendHeader
@@ -40,8 +43,11 @@ class AddNewFriendWrapper extends React.PureComponent {
     }
 }
 
-function mapStateToProps() {
-    return {}
+function mapStateToProps(state) {
+    console.log('ZmIANA', state.contacts.newContacts)
+    return {
+        newContacts: state.contacts.newContacts
+    }
 }
 function mapDispatchToProps(dispatch) {
     return {

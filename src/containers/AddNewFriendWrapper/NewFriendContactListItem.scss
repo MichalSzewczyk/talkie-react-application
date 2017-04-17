@@ -1,0 +1,16 @@
+.NewFriendContactListItem {
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  background-color: #232a32;
+  height: 70px;
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-family: raleway;
+  font-size: 14px;
+  &:not(:first-of-type) {
+    margin-top: 2px;
+  }
+}

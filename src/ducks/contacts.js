@@ -33,7 +33,7 @@ const reducer = handleActions({
             }
             const status = userFromServer.status === "1" ? USER_CONSTANTS.STATUS.ONLINE : USER_CONSTANTS.STATUS.OFFLINE
 
-            return _.extend(_.cloneDeep(user), {
+            return _.extend({}, user, {
                 status
             });
         })
@@ -44,20 +44,24 @@ const reducer = handleActions({
         return newState;
     },
     [REQUEST_NEW_CONTACTS_STARTED().type]: (state) => {
-        const newState = _.assign(state, {
-            isRequestingNewContacts: true
+        const newState = _.assign({}, state, {
+            isRequestingNewContacts: true,
+            newContacts: null
         })
         return newState;
     },
-    [REQUEST_NEW_CONTACTS_FINISHED().type]: (state) => {
-        const newState = _.assign(state, {
-            isRequestingNewContacts: false
+    [REQUEST_NEW_CONTACTS_FINISHED().type]: (state, {payload}) => {
+        const searchResult = payload.search.friends;
+        const newState = _.assign({}, state, {
+            isRequestingNewContacts: false,
+            newContacts: searchResult
         })
         return newState;
     },
     [REQUEST_NEW_CONTACTS_FAILED().type]: (state) => {
-        const newState = _.assign(state, {
-            isRequestingNewContacts: false
+        const newState = _.assign({}, state, {
+            isRequestingNewContacts: false,
+            newContacts: null
         })
         return newState;
     }

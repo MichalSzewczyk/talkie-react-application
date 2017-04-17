@@ -24,7 +24,6 @@ export default function requestNewContacts(searchInputValue) {
         xhr = new XMLHttpRequest();
         requestGraphQL(query, xhr)
             .then((response) => {
-                console.log('response', response)
                 resolve(response)
             })
             .catch(reject)

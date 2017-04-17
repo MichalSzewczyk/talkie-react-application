@@ -1,7 +1,7 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
 import Status from './../Status'
-import USER_AVATAR_FALLBACK_URL from './../../constants/image_fallback'
+import ContactAvatar from './../ContactAvatar'
 
 class ContactListItem extends React.PureComponent {
 
@@ -21,7 +21,7 @@ class ContactListItem extends React.PureComponent {
 
         return (
             <div onClick={::this.onItemClick} className={this.classname()}>
-                <img className={this.classname('avatar')} src={avatar || USER_AVATAR_FALLBACK_URL}/>
+                <ContactAvatar avatarImage={avatar}/>
                 <div className={this.classname('textBox')}>
                     <div className={this.classname('mainText')}>
                         <span className={this.classname('identification')}>{identification}</span>
