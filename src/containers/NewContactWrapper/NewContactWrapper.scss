@@ -9,4 +9,23 @@
     height: 100%;
     margin-right: -17px;
   }
+  &__loader {
+    &__wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      margin: 10px 0;
+    }
+    &__icon {
+      margin-left: 15px;
+      $size: 50px;
+      width: $size;
+      height: $size;
+      svg {
+        width: $size;
+        height: $size;
+      }
+    }
+  }
 }

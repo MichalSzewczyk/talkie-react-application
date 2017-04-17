@@ -8,7 +8,9 @@ import SearchUsersAction from '../../actions/search_new_contacts'
 import _ from 'lodash'
 import AddNewContactAction from './../../actions/add_new_contact'
 import NewContactLoadMoreListItem from './../../components/NewContact/NewContactLoadMoreListItem'
-
+import Icon from './../../components/Icon'
+// import loaderIcon from './../../resources/icons/loader.svg'
+import loaderIcon from './../../resources/loader.gif'
 class NewContactWrapper extends React.Component {
 
     constructor() {
@@ -39,16 +41,24 @@ class NewContactWrapper extends React.Component {
     }
 
     render() {
-        const {onSwitchToContactList, newContacts} = this.props;
-        const fakeContacts = this.createContactsToAdd(newContacts, this.onAddNewContact);
+        const {onSwitchToContactList, newContacts, isRequestingNewContacts} = this.props;
+        const contactList = this.createContactsToAdd(newContacts, this.onAddNewContact);
+        const isContactListEmpty = !_.get(contactList, 'length', 0) && !isRequestingNewContacts
         return (
             <div className={this.classname()}>
                 <NewContactHeader
                     onSwitchToContactList={onSwitchToContactList}
                     onSearchInputChange={this.onSearchInputChange}
                 />
-                <ContactList isEmpty={false}>
-                    {fakeContacts}
+
+                <ContactList
+                    isEmpty={isContactListEmpty}
+                >
+                    {isRequestingNewContacts
+                        ? <div className={this.classname('loader__wrapper')}>
+                            <img className={this.classname('loader__icon')} src={loaderIcon}/>
+                        </div>
+                        : contactList}
                 </ContactList>
             </div>
         )
@@ -57,7 +67,8 @@ class NewContactWrapper extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        newContacts: state.contacts.newContacts
+        newContacts: state.contacts.newContacts,
+        isRequestingNewContacts: state.contacts.isRequestingNewContacts
     }
 }
 function mapDispatchToProps(dispatch) {
