@@ -15,7 +15,8 @@
     margin-top: 2px;
   }
   &__name__icon_wrapper {
-
+    display: flex;
+    align-items: center;
   }
   &__add_icon {
     $size: 30px;
