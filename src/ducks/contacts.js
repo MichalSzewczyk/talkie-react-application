@@ -13,6 +13,7 @@ export const SET_CONTACTS = createAction('CONTACT_LIST/SET_CONTACTS')
 export const REQUEST_NEW_CONTACTS_STARTED = createAction('CONTACT_LIST/REQUEST_NEW_CONTACTS_STARTED')
 export const REQUEST_NEW_CONTACTS_FINISHED = createAction('CONTACT_LIST/REQUEST_NEW_CONTACTS_FINISHED')
 export const REQUEST_NEW_CONTACTS_FAILED = createAction('CONTACT_LIST/REQUEST_NEW_CONTACTS_FAILED')
+export const CLEAR_NEW_CONTACTS = createAction('CONTACT_LIST/CLEAR_NEW_CONTACTS')
 
 const reducer = handleActions({
     [SET_CONTACTS().type]: (state, action) => {
@@ -61,6 +62,12 @@ const reducer = handleActions({
     [REQUEST_NEW_CONTACTS_FAILED().type]: (state) => {
         const newState = _.assign({}, state, {
             isRequestingNewContacts: false,
+            newContacts: null
+        })
+        return newState;
+    },
+    [CLEAR_NEW_CONTACTS().type]: (state) => {
+        const newState = _.assign({}, state, {
             newContacts: null
         })
         return newState;

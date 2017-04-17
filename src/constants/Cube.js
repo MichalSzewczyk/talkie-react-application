@@ -1,4 +1,6 @@
 export default {
     FRONT: 'FRONT',
-    BACK: 'BACK'
+    BACK: 'BACK',
+    LEFT: 'LEFT',
+    RIGHT: 'RIGHT',
 }

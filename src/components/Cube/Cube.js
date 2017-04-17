@@ -27,21 +27,21 @@ class Cube extends React.PureComponent {
     }
 
     render() {
-        const {front, back, left, right} = this.props;
+        const {front, back, left, right, direction} = this.props;
         return (
             <div className={this.classname()}>
                 <div ref="Cube" className={this.classname('wrapper')}>
                     <div className={this.classname('front')}>
-                        {front}
+                        {direction === CUBE_CONSTANT.FRONT && front}
                     </div>
                     <div className={this.classname('back')}>
-                        {back}
+                        {direction === CUBE_CONSTANT.BACK && back}
                     </div>
                     <div className={this.classname('left')}>
-                        {left}
+                        {direction === CUBE_CONSTANT.LEFT && left}
                     </div>
                     <div className={this.classname('right')}>
-                        {right}
+                        {direction === CUBE_CONSTANT.RIGHT && right}
                     </div>
                 </div>
             </div>

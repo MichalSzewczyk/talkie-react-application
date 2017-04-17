@@ -1,10 +1,11 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
 import ContactList from './../../containers/ContactListWrapper'
-import Chat from './../../components/Chat'
 import Cube from './../../components/Cube'
-import CUBE_CONSTANT from './../../constants/Cube'
+import CUBE_CONSTANT from '../../constants/Cube'
 import NewContactWrapper from './../../containers/NewContactWrapper'
+import {CLEAR_NEW_CONTACTS} from './../../ducks/contacts'
+import {connect} from 'react-redux'
 
 class DashboardPage extends React.PureComponent {
 
@@ -19,14 +20,15 @@ class DashboardPage extends React.PureComponent {
     }
 
     onSwitchToUserAdd() {
-        console.log('onSwitchToUserAdd')
         this.setState({
             cubeDirection: CUBE_CONSTANT.BACK
         })
     }
 
     onSwitchToContactList() {
-        console.log('onSwitchToContactList')
+        const {clearSearchResult} = this.props
+
+        clearSearchResult()
         this.setState({
             cubeDirection: CUBE_CONSTANT.FRONT
         })
@@ -48,4 +50,15 @@ class DashboardPage extends React.PureComponent {
         )
     }
 }
-export default DashboardPage
+
+function mapStateToProps() {
+    return {}
+}
+function mapDispatchToProps(dispatch) {
+    return {
+        clearSearchResult: () => {
+            dispatch(CLEAR_NEW_CONTACTS())
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage)
