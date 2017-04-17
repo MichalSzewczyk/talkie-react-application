@@ -25,7 +25,11 @@ class NewContactListItem extends React.PureComponent {
                     <ContactAvatar/>
                     <span> {name}&nbsp;{lastName}</span>
                 </div>
-                <Icon onClick={this.onAddClick} className={this.classname('add_icon')} icon={addNewContactIcon}/>
+                <Icon
+                    onClick={this.onAddClick}
+                    className={this.classname('add_icon')}
+                    icon={addNewContactIcon}
+                />
             </div>
         )
     }

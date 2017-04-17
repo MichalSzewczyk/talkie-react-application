@@ -17,6 +17,10 @@ class NewContactWrapper extends React.Component {
         this.onAddNewContact = ::this.onAddNewContact;
     }
 
+    componentDidMount() {
+        this.onSearchInputChange('')
+    }
+
     createContactsToAdd(list = [], onAddClick) {
         return list && list.map(item => {
                 return <NewContactListItem key={item.id} contact={item} onAddClick={onAddClick}/>

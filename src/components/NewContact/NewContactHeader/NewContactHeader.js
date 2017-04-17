@@ -7,8 +7,8 @@ class NewContactHeader extends React.PureComponent {
     constructor() {
         super()
         this.classname = bemClassName.bind(null, 'NewContactHeader')
-        this.onBackButtonClick = this.onBackButtonClick.bind(this)
-        this.onInputChange = this.onInputChange.bind(this)
+        this.onBackButtonClick = ::this.onBackButtonClick
+        this.onInputChange = ::this.onInputChange
     }
 
     onBackButtonClick() {
@@ -25,10 +25,14 @@ class NewContactHeader extends React.PureComponent {
     render() {
         return (
             <div className={this.classname()}>
-                <Icon className={this.classname('backButton')} onClick={this.onBackButtonClick}
+                <Icon className={this.classname('backButton')}
+                      onClick={this.onBackButtonClick}
                       icon={backIcon}/>
-                <input placeholder="Search" className={this.classname('searchInput')} onChange={this.onInputChange}
-                       type="text"/>
+                <input
+                    placeholder="Search"
+                    className={this.classname('searchInput')}
+                    onChange={this.onInputChange}
+                    type="text"/>
             </div>
         )
     }
