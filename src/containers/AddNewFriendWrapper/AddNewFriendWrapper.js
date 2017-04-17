@@ -17,8 +17,8 @@ class AddNewFriendWrapper extends React.Component {
 
     createContactsToAdd(list = []) {
         return list && list.map(item => {
-            return <NewFriendContactListItem key={item.id} contact={item}/>
-        })
+                return <NewFriendContactListItem key={item.id} contact={item}/>
+            })
     }
 
     onSearchInputChange(value) {
@@ -44,7 +44,6 @@ class AddNewFriendWrapper extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log('ZmIANA', state.contacts.newContacts)
     return {
         newContacts: state.contacts.newContacts
     }

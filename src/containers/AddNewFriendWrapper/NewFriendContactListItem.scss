@@ -10,7 +10,22 @@
   align-items: center;
   font-family: raleway;
   font-size: 14px;
+  justify-content: space-between;
   &:not(:first-of-type) {
     margin-top: 2px;
+  }
+  &__name__icon_wrapper {
+
+  }
+  &__add_icon {
+    $size: 30px;
+    width: $size;
+    height: $size;
+    margin-right: 20px;
+    svg {
+      width: $size;
+      height: $size;
+      fill: rgb(63, 218, 19);
+    }
   }
 }

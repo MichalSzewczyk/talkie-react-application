@@ -1,6 +1,8 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
 import ContactAvatar from './../../components/ContactAvatar'
+import Icon from './../../components/Icon'
+import addNewContactIcon from '../../resources/icons/addNewContact.svg'
 
 class NewFriendContactListItem extends React.PureComponent {
     constructor() {
@@ -13,8 +15,11 @@ class NewFriendContactListItem extends React.PureComponent {
         const {name, lastName} = contact;
         return (
             <div className={this.classname()}>
-                <ContactAvatar/>
-                <span> {name}&nbsp;{lastName}</span>
+                <div className={this.classname('name__icon_wrapper')}>
+                    <ContactAvatar/>
+                    <span> {name}&nbsp;{lastName}</span>
+                </div>
+                <Icon className={this.classname('add_icon')} icon={addNewContactIcon}/>
             </div>
         )
     }
