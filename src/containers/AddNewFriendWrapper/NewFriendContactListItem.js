@@ -8,6 +8,12 @@ class NewFriendContactListItem extends React.PureComponent {
     constructor() {
         super()
         this.classname = bemClassName.bind(null, 'NewFriendContactListItem')
+        this.onAddClick = ::this.onAddClick
+    }
+
+    onAddClick() {
+        const {contact, onAddClick} = this.props
+        onAddClick(contact.id);
     }
 
     render() {
@@ -19,7 +25,7 @@ class NewFriendContactListItem extends React.PureComponent {
                     <ContactAvatar/>
                     <span> {name}&nbsp;{lastName}</span>
                 </div>
-                <Icon className={this.classname('add_icon')} icon={addNewContactIcon}/>
+                <Icon onClick={this.onAddClick} className={this.classname('add_icon')} icon={addNewContactIcon}/>
             </div>
         )
     }

@@ -6,6 +6,7 @@ import NewFriendContactListItem from './NewFriendContactListItem'
 import ContactList from './../../components/ContactList'
 import SearchUsersAction from '../../actions/search_new_contacts'
 import _ from 'lodash'
+import AddNewContactAction from './../../actions/add_new_contact'
 
 class AddNewFriendWrapper extends React.Component {
 
@@ -13,11 +14,12 @@ class AddNewFriendWrapper extends React.Component {
         super()
         this.classname = bemClassName.bind(null, 'AddNewFriendWrapper')
         this.onSearchInputChange = _.debounce(this.onSearchInputChange.bind(this), 300);
+        this.onAddNewContact = ::this.onAddNewContact;
     }
 
-    createContactsToAdd(list = []) {
+    createContactsToAdd(list = [], onAddClick) {
         return list && list.map(item => {
-                return <NewFriendContactListItem key={item.id} contact={item}/>
+                return <NewFriendContactListItem key={item.id} contact={item} onAddClick={onAddClick}/>
             })
     }
 
@@ -26,9 +28,14 @@ class AddNewFriendWrapper extends React.Component {
         searchNewUsers(value);
     }
 
+    onAddNewContact(newContactId) {
+        const {addNewContact} = this.props
+        addNewContact(newContactId)
+    }
+
     render() {
         const {onSwitchToContactList, newContacts} = this.props;
-        const fakeContacts = this.createContactsToAdd(newContacts);
+        const fakeContacts = this.createContactsToAdd(newContacts, this.onAddNewContact);
         return (
             <div className={this.classname()}>
                 <NewFriendHeader
@@ -52,6 +59,9 @@ function mapDispatchToProps(dispatch) {
     return {
         searchNewUsers: (searchInputValue) => {
             dispatch(SearchUsersAction(searchInputValue));
+        },
+        addNewContact: (newContactId) => {
+            dispatch(AddNewContactAction(newContactId))
         }
     }
 }
