@@ -1,12 +1,12 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
-import Icon from './../Icon'
-import backIcon from './../../resources/icons/back.svg'
+import Icon from './../../Icon'
+import backIcon from './../../../resources/icons/back.svg'
 
-class NewFriendHeader extends React.PureComponent {
+class NewContactHeader extends React.PureComponent {
     constructor() {
         super()
-        this.classname = bemClassName.bind(null, 'NewFriendHeader')
+        this.classname = bemClassName.bind(null, 'NewContactHeader')
         this.onBackButtonClick = this.onBackButtonClick.bind(this)
         this.onInputChange = this.onInputChange.bind(this)
     }
@@ -33,4 +33,4 @@ class NewFriendHeader extends React.PureComponent {
         )
     }
 }
-export default NewFriendHeader
+export default NewContactHeader

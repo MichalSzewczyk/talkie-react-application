@@ -1,8 +1,8 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
 import {connect} from 'react-redux'
-import NewFriendHeader from './../../components/NewFriendHeader'
-import NewFriendContactListItem from './NewFriendContactListItem'
+import NewContactHeader from './../../components/NewContact/NewContactHeader'
+import NewContactListItem from '../../components/NewContact/NewContactListItem'
 import ContactList from './../../components/ContactList'
 import SearchUsersAction from '../../actions/search_new_contacts'
 import _ from 'lodash'
@@ -19,7 +19,7 @@ class AddNewFriendWrapper extends React.Component {
 
     createContactsToAdd(list = [], onAddClick) {
         return list && list.map(item => {
-                return <NewFriendContactListItem key={item.id} contact={item} onAddClick={onAddClick}/>
+                return <NewContactListItem key={item.id} contact={item} onAddClick={onAddClick}/>
             })
     }
 
@@ -38,7 +38,7 @@ class AddNewFriendWrapper extends React.Component {
         const fakeContacts = this.createContactsToAdd(newContacts, this.onAddNewContact);
         return (
             <div className={this.classname()}>
-                <NewFriendHeader
+                <NewContactHeader
                     onSwitchToContactList={onSwitchToContactList}
                     onSearchInputChange={this.onSearchInputChange}
                 />

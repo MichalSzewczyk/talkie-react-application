@@ -1,13 +1,13 @@
 import React from 'react'
 import bemClassName from 'bem-classname'
-import ContactAvatar from './../../components/ContactAvatar'
-import Icon from './../../components/Icon'
-import addNewContactIcon from '../../resources/icons/addNewContact.svg'
+import ContactAvatar from './../../ContactAvatar'
+import Icon from './../../Icon'
+import addNewContactIcon from '../../../resources/icons/addNewContact.svg'
 
-class NewFriendContactListItem extends React.PureComponent {
+class NewContactListItem extends React.PureComponent {
     constructor() {
         super()
-        this.classname = bemClassName.bind(null, 'NewFriendContactListItem')
+        this.classname = bemClassName.bind(null, 'NewContactListItem')
         this.onAddClick = ::this.onAddClick
     }
 
@@ -30,4 +30,4 @@ class NewFriendContactListItem extends React.PureComponent {
         )
     }
 }
-export default NewFriendContactListItem
+export default NewContactListItem
