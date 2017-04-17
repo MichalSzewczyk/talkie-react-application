@@ -40,9 +40,14 @@ class NewContactWrapper extends React.Component {
         addNewContact(newContactId)
     }
 
+    filterContacts(loggedUserId, newContacts = []) {
+        return newContacts && newContacts.filter(contact => contact.id != loggedUserId)
+    }
+
     render() {
-        const {onSwitchToContactList, newContacts, isRequestingNewContacts} = this.props;
-        const contactList = this.createContactsToAdd(newContacts, this.onAddNewContact);
+        const {onSwitchToContactList, newContacts, isRequestingNewContacts, loggedUserId} = this.props;
+        const filtredList = this.filterContacts(loggedUserId, newContacts);
+        const contactList = this.createContactsToAdd(filtredList, this.onAddNewContact);
         const isContactListEmpty = !_.get(contactList, 'length', 0) && !isRequestingNewContacts
         return (
             <div className={this.classname()}>
@@ -68,7 +73,8 @@ class NewContactWrapper extends React.Component {
 function mapStateToProps(state) {
     return {
         newContacts: state.contacts.newContacts,
-        isRequestingNewContacts: state.contacts.isRequestingNewContacts
+        isRequestingNewContacts: state.contacts.isRequestingNewContacts,
+        loggedUserId: state.account.id
     }
 }
 function mapDispatchToProps(dispatch) {
