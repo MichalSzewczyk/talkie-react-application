@@ -8,11 +8,11 @@ import SearchUsersAction from '../../actions/search_new_contacts'
 import _ from 'lodash'
 import AddNewContactAction from './../../actions/add_new_contact'
 
-class AddNewFriendWrapper extends React.Component {
+class NewContactWrapper extends React.Component {
 
     constructor() {
         super()
-        this.classname = bemClassName.bind(null, 'AddNewFriendWrapper')
+        this.classname = bemClassName.bind(null, 'NewContactWrapper')
         this.onSearchInputChange = _.debounce(this.onSearchInputChange.bind(this), 300);
         this.onAddNewContact = ::this.onAddNewContact;
     }
@@ -66,4 +66,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddNewFriendWrapper)
+export default connect(mapStateToProps, mapDispatchToProps)(NewContactWrapper)

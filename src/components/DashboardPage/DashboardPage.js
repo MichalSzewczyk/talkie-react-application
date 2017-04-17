@@ -4,7 +4,7 @@ import ContactList from './../../containers/ContactListWrapper'
 import Chat from './../../components/Chat'
 import Cube from './../../components/Cube'
 import CUBE_CONSTANT from './../../constants/Cube'
-import AddNewFriendWrapper from './../../containers/AddNewFriendWrapper'
+import NewContactWrapper from './../../containers/NewContactWrapper'
 
 class DashboardPage extends React.PureComponent {
 
@@ -40,7 +40,7 @@ class DashboardPage extends React.PureComponent {
                     {<Cube
                         direction={cubeDirection}
                         front={<ContactList onSwitchToUserAdd={this.onSwitchToUserAdd}/>}
-                        back={<AddNewFriendWrapper onSwitchToContactList={this.onSwitchToContactList}/>}
+                        back={<NewContactWrapper onSwitchToContactList={this.onSwitchToContactList}/>}
                     />}
                     {this.props.children}
                 </div>
