@@ -3,6 +3,7 @@ import MESSAGE_TYPES from './../constants/message_types'
 import TCP_CONSTANTS from './../constants/TCP'
 import UniqueKeyGenerator from './../utils/uniqueKeyGeneartor'
 import TCPFacade from '../tcp/TcpManager'
+import _ from 'lodash'
 export const TCP_CONNECTION_INITIALIZATION = createAction('CHAT/TCP/TCP_CONNECTION_INITIALIZATION')
 export const TCP_CONNECTION_CREATED = createAction('CHAT/TCP/TCP_CONNECTION_CREATED')
 export const TCP_CONNECTION_FAILED = createAction('CHAT/TCP/TCP_CONNECTION_FAILED')
@@ -12,6 +13,7 @@ export const START_CHAT = createAction('CHAT/CONVERSATION/START')
 export const CLOSE_CHAT = createAction('CHAT/CONVERSATION/CLOSE')
 export const MESSAGE_SEND = createAction('CHAT/SEND/MESSAGE/SEND')
 export const MESSAGE_RECEIVE = createAction('CHAT/MESSAGE/RECEIVE')
+import NotificationManager from './../utils/NotificationManager'
 
 const defaultState = {
     tcpAlive: false,
@@ -59,19 +61,20 @@ const reducer = handleActions({
             uniqueID: UniqueKeyGenerator()
         })
 
-        const newState = Object.assign({}, state, {
-            [receiverId]: {
+        const newState = _.assign({}, state, {
+            [receiverId]: _.assign({}, state[receiverId], {
                 messages: updatedMessagesList,
                 isConversationOpened: true
-            }
+            })
         })
 
         return newState;
     }, [MESSAGE_RECEIVE().type]: (state, {payload}) => {
+
         // TODO: FIX
         const senderId = payload.id;
         const {body, timestamp} = payload.payload
-        const oldMessages = state[senderId] && state[senderId].messages || []
+        const oldMessages = _.get(state, `${senderId}.messages`, []);
         const updatedMessagesList = _.concat(oldMessages, {
             type: MESSAGE_TYPES.RECEIVED,
             body,
@@ -79,24 +82,24 @@ const reducer = handleActions({
             uniqueID: UniqueKeyGenerator()
         })
 
-        const newState = Object.assign({}, state, {
-            [senderId]: {
+        const newState = _.assign({}, state, {
+            [senderId]: _.assign({}, state[senderId], {
                 messages: updatedMessagesList
-            }
+            })
         })
 
         return newState;
     },
 
     [TCP_CONNECTION_INITIALIZATION().type]: (state) => {
-        const newState = Object.assign({}, state, {
+        const newState = _.assign({}, state, {
             isConnectionInProgress: true,
             tcpAlive: false
         })
         return newState
     },
     [TCP_CONNECTION_CREATED().type]: (state) => {
-        const newState = Object.assign({}, state, {
+        const newState = _.assign({}, state, {
             isConnectionInProgress: false,
             tcpAlive: true
         })
@@ -110,12 +113,13 @@ const reducer = handleActions({
         return newState
     },
     [TCP_CONNECTION_DISCONNECTED().type]: (state) => {
-        const newState = Object.assign({}, state, {
+        const newState = _.assign({}, state, {
             isConnectionInProgress: false,
             tcpAlive: false
         })
         return newState
     }
 }, defaultState)
+
 
 export default reducer

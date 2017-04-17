@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import Main from './containers/Main'
 import ProviderWrapper from './containers/ProviderWrapper'
 import './styles/index.scss'
+import 'noty/src/noty.scss'
 
 ReactDOM.render(
     <ProviderWrapper>
