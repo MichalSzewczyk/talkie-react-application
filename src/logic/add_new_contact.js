@@ -1,24 +1,16 @@
 import requestGraphQL from './../utils/requestGraphQL'
 let xhr;
-export default function addNewContact(searchInputValue) {
+
+export default function addNewContact(myId, newContactID) {
     return new Promise((resolve, reject) => {
+        console.log('addNewContact', myId, newContactID)
         xhr ? xhr.abort() : false;
         let query = `
             query{
-             search (
-	                letters:"${searchInputValue}"
-	                length:"${20}"
-	            ) 
+             makeFriends ( who:"${myId}", with:"${newContactID}" ) 
 	            {
-	            friends{
-        	    id
-                name
-                lastName
-                avatar
-                description
-        }
-}
-              }
+	                success
+	            }
             }
         `;
         xhr = new XMLHttpRequest();
