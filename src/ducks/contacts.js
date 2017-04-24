@@ -5,7 +5,8 @@ import _ from 'lodash'
 
 const defaultState = {
     list: [],
-    isRequestingNewContacts: false
+    isRequestingNewContacts: false,
+    isRequestingNewContact: false
 }
 
 export const ON_USER_SELECT = createAction('CONTACT_LIST/ON_USER_SELECT')
@@ -14,6 +15,9 @@ export const REQUEST_NEW_CONTACTS_STARTED = createAction('CONTACT_LIST/REQUEST_N
 export const REQUEST_NEW_CONTACTS_FINISHED = createAction('CONTACT_LIST/REQUEST_NEW_CONTACTS_FINISHED')
 export const REQUEST_NEW_CONTACTS_FAILED = createAction('CONTACT_LIST/REQUEST_NEW_CONTACTS_FAILED')
 export const CLEAR_NEW_CONTACTS = createAction('CONTACT_LIST/CLEAR_NEW_CONTACTS')
+export const ADD_NEW_FRIEND_REQUEST_STARTED = createAction('CONTACT_LIST/ADD_NEW_FRIEND_REQUEST_STARTED')
+export const ADD_NEW_FRIEND_REQUEST_SUCCESS = createAction('CONTACT_LIST/ADD_NEW_FRIEND_REQUEST_SUCCESS')
+export const ADD_NEW_FRIEND_REQUEST_FAILURE = createAction('CONTACT_LIST/ADD_NEW_FRIEND_REQUEST_FAILURE')
 
 const reducer = handleActions({
     [SET_CONTACTS().type]: (state, action) => {
@@ -69,6 +73,24 @@ const reducer = handleActions({
     [CLEAR_NEW_CONTACTS().type]: (state) => {
         const newState = _.assign({}, state, {
             newContacts: null
+        })
+        return newState;
+    },
+    [ADD_NEW_FRIEND_REQUEST_STARTED().type]: (state) => {
+        const newState = _.assign({}, state, {
+            isRequestingNewContact: true
+        })
+        return newState;
+    },
+    [ADD_NEW_FRIEND_REQUEST_SUCCESS().type]: (state) => {
+        const newState = _.assign({}, state, {
+            isRequestingNewContact: false
+        })
+        return newState;
+    },
+    [ADD_NEW_FRIEND_REQUEST_FAILURE().type]: (state) => {
+        const newState = _.assign({}, state, {
+            isRequestingNewContact: false
         })
         return newState;
     }

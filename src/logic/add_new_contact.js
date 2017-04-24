@@ -3,7 +3,6 @@ let xhr;
 
 export default function addNewContact(myId, newContactID) {
     return new Promise((resolve, reject) => {
-        console.log('addNewContact', myId, newContactID)
         xhr ? xhr.abort() : false;
         let query = `
             query{
