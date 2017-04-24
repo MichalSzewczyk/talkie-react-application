@@ -1,5 +1,6 @@
 .ContactList {
   height: 100%;
+  margin-right: -17px;
   overflow: auto;
   background-color: #42494f;
   display: flex;
@@ -68,6 +69,7 @@
 
 .ContactListWrapper {
   height: 100%;
+  overflow: hidden;
 }
 
 .ContactListHeader {
