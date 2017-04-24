@@ -16,9 +16,7 @@ export default function addNewContact(oldFriendID) {
         dispatch(REMOVE_EXISTING_FRIEND__STARTED());
 
         removeExistingContactRequest(myId, oldFriendID)
-            .then((data) => {
-                console.log('REMOVE RESPONSE: ', data)
-                // const success = _.get(data, 'makeFriends.success', false);
+            .then(() => {
                 dispatch(REMOVE_EXISTING_REQUEST_SUCCESS());
             }).catch((e) => {
             dispatch(REMOVE_EXISTING_REQUEST_FAILURE(e));
