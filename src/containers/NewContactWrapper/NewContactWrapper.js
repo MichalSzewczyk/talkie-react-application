@@ -7,10 +7,9 @@ import ContactList from './../../components/ContactList'
 import SearchUsersAction from '../../actions/search_new_contacts'
 import _ from 'lodash'
 import AddNewContactAction from './../../actions/add_new_contact'
-import NewContactLoadMoreListItem from './../../components/NewContact/NewContactLoadMoreListItem'
-import Icon from './../../components/Icon'
-// import loaderIcon from './../../resources/icons/loader.svg'
+import RemoveExistingContactAction from './../../actions/remove_existing_contact'
 import loaderIcon from './../../resources/loader.gif'
+
 class NewContactWrapper extends React.Component {
 
     constructor() {
@@ -18,16 +17,24 @@ class NewContactWrapper extends React.Component {
         this.classname = bemClassName.bind(null, 'NewContactWrapper')
         this.onSearchInputChange = _.debounce(this.onSearchInputChange.bind(this), 300);
         this.onAddNewContact = ::this.onAddNewContact;
+        this.onRemoveExistingContact = ::this.onRemoveExistingContact;
     }
 
     componentDidMount() {
         this.onSearchInputChange('')
     }
 
-    createContactsToAdd(list = [], onAddClick) {
+    createContactsToAdd(list = [], existingContacts = [], onAddClick, onRemoveExistingContact) {
         return list && list.map(item => {
-                return <NewContactListItem key={item.id} contact={item} onAddClick={onAddClick}/>
-            })
+                const isThisItemAlreadyAFriend = !!existingContacts.find(contact => contact.id === item.id);
+                return <NewContactListItem
+                    key={item.id}
+                    alreadyConnected={isThisItemAlreadyAFriend}
+                    contact={item}
+                    onAddClick={onAddClick}
+                    onRemoveExistingContact={onRemoveExistingContact}
+                />
+            }).sort(item => item.props.alreadyConnected)
     }
 
     onSearchInputChange(value) {
@@ -40,14 +47,19 @@ class NewContactWrapper extends React.Component {
         addNewContact(newContactId)
     }
 
+    onRemoveExistingContact(existingContactId) {
+        const {onRemoveExistingContact} = this.props
+        onRemoveExistingContact(existingContactId)
+    }
+
     filterContacts(loggedUserId, newContacts = []) {
         return newContacts && newContacts.filter(contact => contact.id != loggedUserId)
     }
 
     render() {
-        const {onSwitchToContactList, newContacts, isRequestingNewContacts, loggedUserId} = this.props;
+        const {onSwitchToContactList, newContacts, existingContacts, isRequestingNewContacts, loggedUserId} = this.props;
         const filtredList = this.filterContacts(loggedUserId, newContacts);
-        const contactList = this.createContactsToAdd(filtredList, this.onAddNewContact);
+        const contactList = this.createContactsToAdd(filtredList, existingContacts, this.onAddNewContact, this.onRemoveExistingContact);
         const isContactListEmpty = !_.get(contactList, 'length', 0) && !isRequestingNewContacts
         return (
             <div className={this.classname()}>
@@ -73,6 +85,7 @@ class NewContactWrapper extends React.Component {
 function mapStateToProps(state) {
     return {
         newContacts: state.contacts.newContacts,
+        existingContacts: state.contacts.list,
         isRequestingNewContacts: state.contacts.isRequestingNewContacts,
         loggedUserId: state.account.id
     }
@@ -84,6 +97,9 @@ function mapDispatchToProps(dispatch) {
         },
         addNewContact: (newContactId) => {
             dispatch(AddNewContactAction(newContactId))
+        },
+        onRemoveExistingContact: (existingContactId) => {
+            dispatch(RemoveExistingContactAction(existingContactId))
         }
     }
 }

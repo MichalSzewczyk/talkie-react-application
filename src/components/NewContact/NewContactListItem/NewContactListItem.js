@@ -3,12 +3,14 @@ import bemClassName from 'bem-classname'
 import ContactAvatar from './../../ContactAvatar'
 import Icon from './../../Icon'
 import addNewContactIcon from '../../../resources/icons/addNewContact.svg'
+import removeNewContactIcon from '../../../resources/icons/removeExistingContact.svg'
 
 class NewContactListItem extends React.PureComponent {
     constructor() {
         super()
         this.classname = bemClassName.bind(null, 'NewContactListItem')
         this.onAddClick = ::this.onAddClick
+        this.onRemoveClick = ::this.onRemoveClick
     }
 
     onAddClick() {
@@ -16,8 +18,13 @@ class NewContactListItem extends React.PureComponent {
         onAddClick(contact.id);
     }
 
+    onRemoveClick() {
+        const {contact, onRemoveExistingContact} = this.props
+        onRemoveExistingContact(contact.id);
+    }
+
     render() {
-        const {contact} = this.props;
+        const {contact, alreadyConnected} = this.props;
         const {name, lastName} = contact;
         return (
             <div className={this.classname()}>
@@ -25,11 +32,17 @@ class NewContactListItem extends React.PureComponent {
                     <ContactAvatar/>
                     <span> {name}&nbsp;{lastName}</span>
                 </div>
-                <Icon
-                    onClick={this.onAddClick}
-                    className={this.classname('add_icon')}
-                    icon={addNewContactIcon}
-                />
+                {
+                    alreadyConnected ?
+                        <Icon
+                            onClick={this.onRemoveClick}
+                            className={this.classname('remove_icon')}
+                            icon={removeNewContactIcon}/>
+                        : <Icon
+                        onClick={this.onAddClick}
+                        className={this.classname('add_icon')}
+                        icon={addNewContactIcon}/>
+                }
             </div>
         )
     }
