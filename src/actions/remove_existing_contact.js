@@ -4,6 +4,7 @@ import {
     REMOVE_EXISTING_REQUEST_FAILURE,
     REMOVE_EXISTING_REQUEST_SUCCESS,
 } from './../ducks/contacts'
+import fetchUserContactList from './fetch_user_contact_list'
 
 export default function addNewContact(oldFriendID) {
     return (dispatch, getState) => {
@@ -18,6 +19,7 @@ export default function addNewContact(oldFriendID) {
         removeExistingContactRequest(myId, oldFriendID)
             .then(() => {
                 dispatch(REMOVE_EXISTING_REQUEST_SUCCESS());
+                dispatch(fetchUserContactList());
             }).catch((e) => {
             dispatch(REMOVE_EXISTING_REQUEST_FAILURE(e));
         })

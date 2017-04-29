@@ -1,4 +1,5 @@
 import addNewContactRequest from './../logic/add_new_contact'
+import fetchUserContactList from './fetch_user_contact_list'
 import {
     ADD_NEW_FRIEND_REQUEST_FAILURE,
     ADD_NEW_FRIEND_REQUEST_STARTED,
@@ -20,6 +21,7 @@ export default function addNewContact(contactId) {
             .then((data) => {
                 const success = _.get(data, 'makeFriends.success', false);
                 dispatch(ADD_NEW_FRIEND_REQUEST_SUCCESS({success}));
+                dispatch(fetchUserContactList());
             }).catch((e) => {
             dispatch(ADD_NEW_FRIEND_REQUEST_FAILURE(e));
         })
