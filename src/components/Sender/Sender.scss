@@ -14,7 +14,16 @@
     box-sizing: border-box;
     resize: none;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 15px;
+    padding: 10px;
+    &::-webkit-input-placeholder {
+      color: rgba(0, 0, 0, 0.38) !important;
+      font-size: 15px;
+      padding-left: 10px;
+      padding-top: 8px;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+
   }
   button {
     width: 130px;
@@ -38,4 +47,5 @@
     animation-fill-mode: forwards;
 
   }
+
 }
