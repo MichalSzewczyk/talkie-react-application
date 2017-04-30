@@ -11,7 +11,7 @@ export default (query, xhr) => {
                         resolve(response)
                         return;
                     }
-                    reject('Request canceled')
+                    reject('Request aborted')
                 }
             }
 

@@ -8,7 +8,7 @@ import {
 import _ from 'lodash'
 
 export default function addNewContact(contactId) {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         if (!contactId) {
             return;
         }
@@ -16,14 +16,13 @@ export default function addNewContact(contactId) {
         const myId = state.account.id;
 
         dispatch(ADD_NEW_FRIEND_REQUEST_STARTED({contactId}));
-
-        addNewContactRequest(myId, contactId)
-            .then((data) => {
-                const success = _.get(data, 'makeFriends.success', false);
-                dispatch(ADD_NEW_FRIEND_REQUEST_SUCCESS({success, contactId}));
-                dispatch(fetchUserContactList());
-            }).catch((e) => {
+        try {
+            const data = await addNewContactRequest(myId, contactId);
+            const success = _.get(data, 'makeFriends.success', false);
+            dispatch(ADD_NEW_FRIEND_REQUEST_SUCCESS({success, contactId}));
+            dispatch(fetchUserContactList());
+        } catch (error) {
             dispatch(ADD_NEW_FRIEND_REQUEST_FAILURE({contactId}));
-        })
+        }
     }
 }

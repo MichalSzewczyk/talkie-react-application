@@ -5,7 +5,25 @@ class NotificationManager {
         new Noty({
             text,
             type: 'info',
-            timeout: 3000,
+            timeout: 1200,
+            progressBar: true
+        }).show();
+    }
+
+    error(text) {
+        new Noty({
+            text,
+            type: 'error',
+            timeout: 1200,
+            progressBar: true
+        }).show();
+    }
+
+    success(text) {
+        new Noty({
+            text,
+            type: 'success',
+            timeout: 1200,
             progressBar: true
         }).show();
     }
