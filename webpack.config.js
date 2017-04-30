@@ -6,6 +6,7 @@ const config = {
     context: path.join(__dirname, 'src/'),
     devtool: 'inline-source-map',
     entry: [
+        'babel-polyfill',
         './index.js'
     ],
     output: {

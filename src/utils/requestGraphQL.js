@@ -1,20 +1,26 @@
 export default (query, xhr) => {
-    return new Promise((resolve, reject) => {
-        // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.open('POST', 'http://localhost:8090/', true);
+    return Promise.race([
+        new Promise((resolve, reject) => {
+            xhr.open('POST', 'http://localhost:8090/', true);
 
-        xhr.onreadystatechange = function () {//Call a function when the state changes.
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // Request finished. Do processing here.
-                    const response = JSON.parse(xhr.response)
-                    resolve(response)
-                    return;
+            xhr.onreadystatechange = function () {//Call a function when the state changes.
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Request finished. Do processing here.
+                        const response = JSON.parse(xhr.response)
+                        resolve(response)
+                        return;
+                    }
+                    reject('Request canceled')
                 }
-                reject(new Error(' (╯°□°）╯︵ ┻━┻: Could not connect to server'))
             }
-        }
 
-        xhr.send(query)
-    })
+            xhr.send(query)
+        }),
+        new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject(new Error(' (╯°□°）╯︵ ┻━┻: [Timeout] Could not connect to server'));
+            }, 10000)
+        })
+    ])
 }

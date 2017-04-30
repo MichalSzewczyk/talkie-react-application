@@ -1,10 +1,9 @@
 import requestGraphQL from './../utils/requestGraphQL'
 let xhr;
 
-export default function fetchUserContactList(myId) {
-    return new Promise((resolve, reject) => {
-        xhr ? xhr.abort() : false;
-        let query = `
+export default async function fetchUserContactList(myId) {
+    xhr ? xhr.abort() : false;
+    let query = `
             query{ 
                 myFriends(id:"${myId}"){                
             	    friends{
@@ -16,11 +15,10 @@ export default function fetchUserContactList(myId) {
             }} 
 }
         `;
-        xhr = new XMLHttpRequest();
-        requestGraphQL(query, xhr)
-            .then((response) => {
-                resolve(response)
-            })
-            .catch(reject)
-    })
+    xhr = new XMLHttpRequest();
+    try {
+        return requestGraphQL(query, xhr);
+    } catch (error) {
+        return error;
+    }
 }

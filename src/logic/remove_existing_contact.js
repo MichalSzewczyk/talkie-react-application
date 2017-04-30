@@ -1,9 +1,7 @@
 import requestGraphQL from './../utils/requestGraphQL'
 
-export default function removeExistingContact(myId, oldFriendID) {
-    return new Promise((resolve, reject) => {
-        console.log('removeExistingContact', myId, oldFriendID)
-        let query = `
+export default async function removeExistingContact(myId, oldFriendID) {
+    let query = `
             query{
              removeFriends ( who:"${myId}", with:"${oldFriendID}" ) 
 	            {
@@ -11,11 +9,9 @@ export default function removeExistingContact(myId, oldFriendID) {
 	            }
             }
         `;
-
-        requestGraphQL(query, new XMLHttpRequest())
-            .then((response) => {
-                resolve(response)
-            })
-            .catch(reject)
-    })
+    try {
+        return requestGraphQL(query, new XMLHttpRequest());
+    } catch (e) {
+        return e;
+    }
 }

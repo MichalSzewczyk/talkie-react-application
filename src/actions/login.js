@@ -23,7 +23,7 @@ export default function loginAction(login, password, redirectToDashboard = true)
                     resolve()
                 }).catch((error) => {
                 dispatch(LOGIN(error))
-                reject()
+                reject(error)
             })
         })
 

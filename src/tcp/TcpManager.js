@@ -1,4 +1,5 @@
 import TCP_CONSTANTS from './../constants/TCP'
+let regeneratorRuntime = require("regenerator-runtime");
 import store from './../store'
 import receivedMessageHandler from './received_message_handler'
 import userStatus from './userStatus'
