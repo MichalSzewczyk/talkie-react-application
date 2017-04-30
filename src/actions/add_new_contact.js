@@ -15,15 +15,15 @@ export default function addNewContact(contactId) {
         const state = getState();
         const myId = state.account.id;
 
-        dispatch(ADD_NEW_FRIEND_REQUEST_STARTED());
+        dispatch(ADD_NEW_FRIEND_REQUEST_STARTED({contactId}));
 
         addNewContactRequest(myId, contactId)
             .then((data) => {
                 const success = _.get(data, 'makeFriends.success', false);
-                dispatch(ADD_NEW_FRIEND_REQUEST_SUCCESS({success}));
+                dispatch(ADD_NEW_FRIEND_REQUEST_SUCCESS({success, contactId}));
                 dispatch(fetchUserContactList());
             }).catch((e) => {
-            dispatch(ADD_NEW_FRIEND_REQUEST_FAILURE(e));
+            dispatch(ADD_NEW_FRIEND_REQUEST_FAILURE({contactId}));
         })
     }
 }

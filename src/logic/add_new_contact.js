@@ -1,9 +1,8 @@
 import requestGraphQL from './../utils/requestGraphQL'
-let xhr;
+
 
 export default function addNewContact(myId, newContactID) {
     return new Promise((resolve, reject) => {
-        xhr ? xhr.abort() : false;
         let query = `
             query{
              makeFriends ( who:"${myId}", with:"${newContactID}" ) 
@@ -12,8 +11,8 @@ export default function addNewContact(myId, newContactID) {
 	            }
             }
         `;
-        xhr = new XMLHttpRequest();
-        requestGraphQL(query, xhr)
+
+        requestGraphQL(query, new XMLHttpRequest())
             .then((response) => {
                 resolve(response)
             })

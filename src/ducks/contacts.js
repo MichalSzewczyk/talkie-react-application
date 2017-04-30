@@ -89,33 +89,35 @@ const reducer = handleActions({
         })
         return newState;
     },
-    [ADD_NEW_FRIEND_REQUEST_STARTED().type]: (state) => {
-        const newState = _.assign({}, state, {
-            isRequestingNewContact: true
-        })
-        return newState;
+    [ADD_NEW_FRIEND_REQUEST_STARTED().type]: (state, {payload}) => {
+        const {contactId} = payload;
+        return _.assign({}, state, {
+            isRequestingNewContact: true,
+            newContacts: updateNewUserList(state, contactId, 'pending')
+        });
     },
     [ADD_NEW_FRIEND_REQUEST_SUCCESS().type]: (state) => {
-        const newState = _.assign({}, state, {
-            isRequestingNewContact: false
-        })
-        return newState;
+        return _.assign({}, state, {
+            isRequestingNewContact: false,
+        });
     },
     [ADD_NEW_FRIEND_REQUEST_FAILURE().type]: (state) => {
         const newState = _.assign({}, state, {
-            isRequestingNewContact: false
+            isRequestingNewContact: false,
         })
         return newState;
     },
-    [REMOVE_EXISTING_FRIEND__STARTED().type]: (state) => {
+    [REMOVE_EXISTING_FRIEND__STARTED().type]: (state, {payload}) => {
+        const {contactId} = payload;
         const newState = _.assign({}, state, {
-            isRequestingRemoveExistingContact: true
+            isRequestingRemoveExistingContact: true,
+            newContacts: updateNewUserList(state, contactId, 'pending')
         })
         return newState;
     },
     [REMOVE_EXISTING_REQUEST_SUCCESS().type]: (state) => {
         const newState = _.assign({}, state, {
-            isRequestingRemoveExistingContact: false
+            isRequestingRemoveExistingContact: false,
         })
         return newState;
     },
@@ -134,13 +136,15 @@ const reducer = handleActions({
     [ REQUEST_USER_CONTACT_LIST_SUCCESS().type]: (state, {payload}) => {
         const newState = _.assign({}, state, {
             isRequestingUserList: false,
-            list: payload
+            list: payload,
+            newContacts: clearNewUserListStatuses(state)
         })
         return newState;
     },
     [ REQUEST_USER_CONTACT_LIST_FAIL().type]: (state) => {
         const newState = _.assign({}, state, {
-            isRequestingUserList: false
+            isRequestingUserList: false,
+            newContacts: clearNewUserListStatuses(state)
         })
         return newState;
     }
@@ -153,6 +157,24 @@ function addStatusToList(list) {
         return contact
     })
 }
-
+function updateNewUserList(state, contactId, status) {
+    return state.newContacts
+        .map(item => {
+            if (item.id === contactId) {
+                return _.assign({}, item, {
+                    status
+                })
+            }
+            return item;
+        });
+}
+function clearNewUserListStatuses(state) {
+    return state.newContacts
+        .map(item => {
+            return _.assign({}, item, {
+                status: 'finished'
+            })
+        })
+}
 
 export default reducer

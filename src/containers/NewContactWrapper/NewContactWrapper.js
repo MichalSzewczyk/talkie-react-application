@@ -8,7 +8,7 @@ import SearchUsersAction from '../../actions/search_new_contacts'
 import _ from 'lodash'
 import AddNewContactAction from './../../actions/add_new_contact'
 import RemoveExistingContactAction from './../../actions/remove_existing_contact'
-import loaderIcon from './../../resources/loader.gif'
+import Loader from './../../components/loader'
 
 class NewContactWrapper extends React.Component {
 
@@ -72,9 +72,7 @@ class NewContactWrapper extends React.Component {
                     isEmpty={isContactListEmpty}
                 >
                     {isRequestingNewContacts
-                        ? <div className={this.classname('loader__wrapper')}>
-                            <img className={this.classname('loader__icon')} src={loaderIcon}/>
-                        </div>
+                        ? <Loader/>
                         : contactList}
                 </ContactList>
             </div>

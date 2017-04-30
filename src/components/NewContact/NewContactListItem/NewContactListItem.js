@@ -4,6 +4,7 @@ import ContactAvatar from './../../ContactAvatar'
 import Icon from './../../Icon'
 import addNewContactIcon from '../../../resources/icons/addNewContact.svg'
 import removeNewContactIcon from '../../../resources/icons/removeExistingContact.svg'
+import Loader from './../../../components/loader'
 
 class NewContactListItem extends React.PureComponent {
     constructor() {
@@ -25,7 +26,10 @@ class NewContactListItem extends React.PureComponent {
 
     render() {
         const {contact, alreadyConnected} = this.props;
-        const {name, lastName} = contact;
+        const {name, lastName, status} = contact;
+        const isStatusPending = status === 'pending';
+        const showRemoveIcon = alreadyConnected && !isStatusPending;
+        const showAddIcon = !alreadyConnected && !isStatusPending;
         return (
             <div className={this.classname()}>
                 <div className={this.classname('name__icon_wrapper')}>
@@ -33,15 +37,19 @@ class NewContactListItem extends React.PureComponent {
                     <span> {name}&nbsp;{lastName}</span>
                 </div>
                 {
-                    alreadyConnected ?
-                        <Icon
-                            onClick={this.onRemoveClick}
-                            className={this.classname('remove_icon')}
-                            icon={removeNewContactIcon}/>
-                        : <Icon
+                    showRemoveIcon && <Icon
+                        onClick={this.onRemoveClick}
+                        className={this.classname('remove_icon')}
+                        icon={removeNewContactIcon}/>
+                }
+                {
+                    showAddIcon && <Icon
                         onClick={this.onAddClick}
                         className={this.classname('add_icon')}
                         icon={addNewContactIcon}/>
+                }
+                {
+                    isStatusPending && <Loader/>
                 }
             </div>
         )
