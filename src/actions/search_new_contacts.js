@@ -6,12 +6,14 @@ import {
 import requestNewContacts from "../logic/requestNewContacts";
 
 export default function requestNewContactsOnSearch(searchValue) {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(REQUEST_NEW_CONTACTS_STARTED());
-        requestNewContacts(searchValue).then((searchResult) => {
+        try {
+            const searchResult = await requestNewContacts(searchValue);
+            console.log('searchResult', searchResult);
             dispatch(REQUEST_NEW_CONTACTS_FINISHED(searchResult));
-        }).catch(() => {
+        } catch (error) {
             dispatch(REQUEST_NEW_CONTACTS_FAILED());
-        })
+        }
     }
 }

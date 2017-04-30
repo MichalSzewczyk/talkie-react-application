@@ -1,9 +1,8 @@
 import requestGraphQL from './../utils/requestGraphQL'
 let xhr;
-export default function requestNewContacts(searchInputValue) {
-    return new Promise((resolve, reject) => {
-        xhr ? xhr.abort() : false;
-        let query = `
+export default async function requestNewContacts(searchInputValue) {
+    xhr ? xhr.abort() : false;
+    let query = `
             query{
              search (
 	                letters:"${searchInputValue}"
@@ -21,11 +20,6 @@ export default function requestNewContacts(searchInputValue) {
               }
             }
         `;
-        xhr = new XMLHttpRequest();
-        requestGraphQL(query, xhr)
-            .then((response) => {
-                resolve(response)
-            })
-            .catch(reject)
-    })
+    xhr = new XMLHttpRequest();
+    return await requestGraphQL(query, xhr);
 }

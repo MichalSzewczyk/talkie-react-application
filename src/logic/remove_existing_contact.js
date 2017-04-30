@@ -9,9 +9,5 @@ export default async function removeExistingContact(myId, oldFriendID) {
 	            }
             }
         `;
-    try {
-        return requestGraphQL(query, new XMLHttpRequest());
-    } catch (e) {
-        return e;
-    }
+    return await requestGraphQL(query, new XMLHttpRequest());
 }

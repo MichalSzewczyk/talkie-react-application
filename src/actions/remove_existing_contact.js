@@ -7,7 +7,7 @@ import {
 import fetchUserContactList from './fetch_user_contact_list'
 
 export default function addNewContact(contactId) {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         if (!contactId) {
             return;
         }
@@ -15,13 +15,12 @@ export default function addNewContact(contactId) {
         const myId = state.account.id;
 
         dispatch(REMOVE_EXISTING_FRIEND__STARTED({contactId}));
-
-        removeExistingContactRequest(myId, contactId)
-            .then(() => {
-                dispatch(REMOVE_EXISTING_REQUEST_SUCCESS({contactId}));
-                dispatch(fetchUserContactList());
-            }).catch((e) => {
+        try {
+            await removeExistingContactRequest(myId, contactId);
+            dispatch(REMOVE_EXISTING_REQUEST_SUCCESS({contactId}));
+            dispatch(fetchUserContactList());
+        } catch (error) {
             dispatch(REMOVE_EXISTING_REQUEST_FAILURE({contactId}));
-        })
+        }
     }
 }
