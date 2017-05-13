@@ -1,7 +1,9 @@
+import { connectionURL } from './../constants/XHR'
+
 export default (query, xhr) => {
     return Promise.race([
         new Promise((resolve, reject) => {
-            xhr.open('POST', 'http://localhost:8090/', true);
+            xhr.open('POST', connectionURL, true);
 
             xhr.onreadystatechange = function () {//Call a function when the state changes.
                 if (xhr.readyState === XMLHttpRequest.DONE) {

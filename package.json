@@ -4,7 +4,8 @@
   "description": "\"# talkie-react-application\"",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --content-base=dist --inline --watch --hot"
+    "start": "webpack-dev-server --content-base=dist --inline --watch --hot",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
